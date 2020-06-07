@@ -1,7 +1,7 @@
 ---
 id: css1
 title: Cascading Style Sheet
-sidebar_label: Cascading Style Sheet - I
+sidebar_label: Introduction
 ---
 ## 1.Introduction
 CSS stands for Cascading Style Sheets

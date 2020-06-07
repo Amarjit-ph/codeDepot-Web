@@ -1,7 +1,7 @@
 ---
 id: css2
 title: Cascading Style Sheet
-sidebar_label: Cascading Style Sheet - II
+sidebar_label: Box Model & Layout
 ---
 
 import  useBaseUrl from '@docusaurus/useBaseUrl';

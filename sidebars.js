@@ -9,7 +9,7 @@
 
 module.exports = {
   someSidebar: {
-    CascadingStyle: ['css1', 'css2'],
+    CascadingStyle: ['css1', 'css2', 'css3'],
     Docusaurus: ['doc1', 'doc2', 'doc3'],
     Features: ['mdx'],
   },
