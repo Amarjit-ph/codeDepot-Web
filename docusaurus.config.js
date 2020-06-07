@@ -10,7 +10,7 @@
 module.exports = {
   title: 'Code Depot',
   tagline: 'Personal Code Storage Space for Flawless coding Experience & References',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://codeDepot.netlify.com',
   baseUrl: '/',
   favicon: 'img/net.ico',
   organizationName: 'Amarjit Pheiroijam', // Usually your GitHub org/user name.
