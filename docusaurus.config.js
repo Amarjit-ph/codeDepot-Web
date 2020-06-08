@@ -25,7 +25,7 @@ module.exports = {
       },
       links: [
         {
-          to: 'docs/',
+          to: 'docs/css1',
           activeBasePath: 'docs',
           label: 'Documentation',
           position: 'left',
@@ -34,7 +34,7 @@ module.exports = {
         // Please keep GitHub link to the right for consistency.
         {
           href: 'https://github.com/Amarjit-ph',
-          label: 'Night Mode',
+          label: 'Github',
           position: 'right',
         },
       ],

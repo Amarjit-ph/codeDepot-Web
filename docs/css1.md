@@ -3,7 +3,7 @@ id: css1
 title: Cascading Style Sheet
 sidebar_label: Introduction
 ---
-## 1.Introduction
+## 1. Introduction
 CSS stands for Cascading Style Sheets
 
 CSS describes how HTML elements are to be displayed on screen, paper, or in other media
@@ -43,7 +43,7 @@ p {
 ```
 
 
-## 2.Syntax
+## 2. Syntax
 A CSS rule-set consists of a selector and a declaration block:
 ```css
 p {
@@ -70,7 +70,7 @@ Each declaration includes a CSS property name and a value, separated by a colon.
 Multiple CSS declarations are separated with semicolons, and declaration blocks are surrounded by curly braces.
 
 
-## 3.Selectors
+## 3. Selectors
 CSS selectors are used to "find" (or select) the HTML elements you want to style.
 
 We can divide CSS selectors into five categories:
@@ -112,7 +112,7 @@ Selects all `<p>` elements
 }
 ```
 
-## 4.Colors
+## 4. Colors
 Colors are specified using predefined 
 - Color names `color:Red;`
 - RGB `color:rgb(255, 255, 255);`
@@ -120,7 +120,7 @@ Colors are specified using predefined
 - HEX `color:#ff6347;`
 - HSL `color:hsl(0, 100%, 50%);`
 
-## 5.Backgrounds
+## 5. Backgrounds
 The CSS background properties are used to define the background effects for elements.
 
 In these chapters, you will learn about the following CSS background properties:
@@ -132,7 +132,7 @@ In these chapters, you will learn about the following CSS background properties:
 - background-position `background-position: right top;`
 
 
-## 6.Border
+## 6. Border
 
 ### Border Style
 - dotted - Defines a dotted border
@@ -168,7 +168,7 @@ p {
 ```
 
 
-## 7.Margin
+## 7. Margin
 
 - margin-top
 - margin-right
@@ -183,7 +183,7 @@ p {
   margin-left: 80px;
 }
 ```
-## 8.Padding
+## 8. Padding
 
 The CSS padding properties are used to generate space around an element's content, inside of any defined borders.
 
@@ -197,7 +197,7 @@ div {
 ```
 
 
-## 9.Height & Width
+## 9. Height & Width
 
 The height and width properties are used to set the height and width of an element.
 
