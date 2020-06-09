@@ -10,6 +10,7 @@
 module.exports = {
   someSidebar: {
     CascadingStyle: ['css1', 'css2', 'css3'],
+    Nodejs: ['node1', 'node2', 'node3'],
     React: ['React1', 'React2', 'React3', 'React4', 'React5', 'React6'],
     Gatsby: ['Gatsby1', 'Gatsby2', 'Gatsby3'],
   },
