@@ -20,22 +20,22 @@ module.exports = {
     navbar: {
       title: 'Code Depot',
       logo: {
-        alt: 'My Facebook Project Logo',
+        alt: 'Amarjit Pheiroijam',
         src: 'img/Amarjit.svg',
       },
       links: [
         {
           to: 'docs/css1',
           activeBasePath: 'docs',
-          label: 'Documentation',
+          label: 'Documentations',
           position: 'left',
         },
-        { to: 'blog', label: 'Blog', position: 'left' },
+        // { to: 'blog', label: 'Articles', position: 'left' },
         // Please keep GitHub link to the right for consistency.
         {
           href: 'https://github.com/Amarjit-ph',
           label: 'Github',
-          position: 'right',
+          position: 'left',
         },
       ],
     },
@@ -43,70 +43,7 @@ module.exports = {
     footer: {
       style: 'dark',
       links: [
-        /*{
-          title: 'Learn',
-          items: [
-            {
-              label: 'Style Guide',
-              to: 'docs/',
-            },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'Legal',
-          // Please do not remove the privacy and terms, it's a legal requirement.
-          items: [
-            {
-              label: 'Privacy',
-              href: 'https://opensource.facebook.com/legal/privacy/',
-              target: '_blank',
-              rel: 'noreferrer noopener',
-            },
-            {
-              label: 'Terms',
-              href: 'https://opensource.facebook.com/legal/terms/',
-              target: '_blank',
-              rel: 'noreferrer noopener',
-            },
-          ],
-        },*/
       ],
-
-      // Please do not remove the credits, help to publicize Docusaurus :)
       copyright: `Copyright © ${new Date().getFullYear()} Amarjit Pheiroijam`,
     },
   },
