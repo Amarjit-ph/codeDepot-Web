@@ -3,22 +3,21 @@ id: node2
 title: MongoDB
 sidebar_label: Node & Mongo
 ---
-## 1. Mongo Database 
+## 1. Node & Mongo Database 
+MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by MongoDB Inc
 
-MONGO DATABASE USING MONGOOSE
-
+### 1. Nodejs & MongoDb using Mongoose
 Every Access of database require three steps :
 1. Schema 
 2. Model
 3. Access Method
 
-DATABASE CONNECTION
-
+#### 1. DATABASE CONNECTION
 ```
 mongoose.connect(“process.env.DATABASEURL”,{useNewUrlParser:true});
 ```
 
-SCHEMA
+#### 2. SCHEMA
 It is about defining a pattern of the data and more pattern can also be added.
 
 ``` js
@@ -29,18 +28,15 @@ var catSchema = new mongoose.Schema(
 });
 ```
 
-MODEL
-
+#### 3. MODEL
 The Schema is complied into a model and all the method can be used to on model to access the database with those methods.
 
 `Var cat=moongose.model(“Cat”.catSchema);`
 
-ACCESS METHODS
-
+#### ACCESS METHODS
 1. Create 
 2. FindOne
 3. FindAll
-
 ``` js
 Cat.create(
 {
@@ -54,10 +50,9 @@ Cat.create(
 });
 ```
 
-#### CREATE AND RETRIVE DATA FROM DATABASE
+### 2. Create & Retrive Data from Database 
 
 CREATING DATA TO DATABASE
-
 1. USING SAVE
 ``` js
 Var geroge = new Cat({
@@ -81,7 +76,7 @@ else { console.log(“ SAVED : “,cat);
 });
 ```
 
-#### RETRIVING DATA FROM DATABASE
+### 3. Retrive Data from Database
 
 1. USING FIND [RETIVING ALL THE DATA]
 
@@ -102,12 +97,14 @@ Else{console.log(cats);
 
 ## 2. Restful Routing
 
-REST : Representational State Transfer 
+A RESTful route is a route that provides mapping between HTTP verbs (get, post, put, delete, patch) to controller CRUD actions (create, read, update, delete). Instead of relying solely on the URL to indicate what site to visit, a RESTful route also depends on the HTTP verb and the URL.
+
+#### REST : Representational State Transfer 
 
 It is a way of Mapping HTTP verbs (Get,Post,Put,Delete) and CURD actions
 (Create,Read,Update,Delete) together.
 
-CURD
+#### CURD
 - C : CREATE
 - U : UPDATE
 - R : READ
@@ -125,18 +122,16 @@ There are 7 different RestFull Routes pattern to follow when creating an applica
 |     Update     |     /blog/:id         |     PUT          |
 |     Destroy    |     /blog/:id         |     DELETE       |
 
-## 3. Protection from Scripts
+## 3. Protection from XSS
 
-PROTECTION FROM SCRIPTS USING SANITIZER
-
+### 1. Protection from Scripts using Sanitizer
 ```js
 var expressSanitize = require(“express-sanitizer”);
 -----  AFTER BODY PARSER  -----
 app.use(expressSanitizer());
 ```
 
-SANITIZING THE DATA FROM HTML FORM
-
+### 2. Sanitizing the Data from Html form
 ``` js
 Req.body.blog = req.sanitize(req.body.blog);
 ```
@@ -147,17 +142,16 @@ Removing the Unwanted tags and scripts from the HTML form input that is send to 
 
 Relation that exist between the data which are associated with some specific attributes
 
-TYPES OF RELATION
+#### 1. TYPES OF RELATION
 1. One to One
 2. One to Many
 3. Many to Many	
 
-METHODS OF ACHIEVING ASSOCIATION:
+#### 2. METHODS OF ACHIEVING ASSOCIATION:
 1. Embedding Data
 2. Referencing Data
 
-SCHEMA & MODEL EXAMPLE FOR IMPLEMENTATION
-
+#### 3. SCHEMA & MODEL EXAMPLE FOR IMPLEMENTATION
 1. USER SCHEMA & MODEL
 ```js
 var userSchema = new mongoose.Schema({ 
@@ -165,6 +159,7 @@ email:String,
 name:String    });
 var User = mongoose.model(“User”,userSchema);
 ```
+
 2. POST SCHEMA & MODEL
 ```js
 var postSchema = new mongoose.Schema({
@@ -187,28 +182,26 @@ posts:[postSchema] });
 var User = mongoose.model(“User”,usersSchema);
 ```
 
-CREATING A USER AND A POST 
-
-1. CREATE USER
+#### 1. CREATE USER
 ```js
 Var newUser = new User ({
 Email:hero@gmail.com,
 name:Hermoine   });
 ```
 
-2. CREATE POST AND PUSH TO USER
+#### 2. CREATE POST AND PUSH TO USER
 ```js
 newUser.posts.push({
 title:”How to Aspectro Pratonum”,
 content:”Remove wand and say partromun” });
 ```
-3. SAVE THE USER
+#### 3. SAVE THE USER
 ```js
 newUser.save(function(err,user){
   if(err){ Console.log(err);}
 else{ Console.log(user);}
 ```
-FIND THE USER AND PUSHING THE POST
+#### 4. FIND THE USER AND PUSHING THE POST
 ```js
 User.findOne({name:Hermoine},function(err,userDB){
 If(err){console.log(err); }
@@ -226,7 +219,7 @@ content:”Remove wand and say partromun” });
 
 ### 2. Referencing Data
 
-POST SCHEMA & MODEL
+#### POST SCHEMA & MODEL
 ```js
 var postSchema = new mongoose.Schema({
 title:String,
@@ -243,7 +236,7 @@ posts: [
 ]          });
 var User = mongoose.model(“User”,userSchmea);
 ```
-CREATING POST AND REFERENCING TO USER
+#### 1. CREATING POST AND REFERENCING TO USER
 ```js
 Post.create({
 Title:”How to Cook”,
@@ -260,7 +253,7 @@ Content:” XYZ” },function(err,post){
 });
 ```
 
-FIND USER AND POPULATING THE POST
+#### 2. FIND USER AND POPULATING THE POST
 ```js 
 User.findOne({email:bob@gmail.com}).populate(“posts).exec(function
 (err,user){  if(err){console.log(err); }
@@ -270,8 +263,7 @@ else(err){ console.log(user); }
 
 All the data which are reference will be populated and available on user.
 
-ASSOCIATING A USERNAME WITH COMMENT
-
+#### 3. ASSOCIATING A USERNAME WITH COMMENT
 ```js
 var commentSchema = mongoose.Schema({
 text:String,
@@ -285,8 +277,7 @@ author:{
 });
 ```
 
-CODE OF CREATING THE COMMENT
-
+#### CODE OF CREATING THE COMMENT
 ``` js
 //ADD USERNAME AND ID
 Comment.author.id = req.user._id;
@@ -299,26 +290,21 @@ Campground.save();
 ```
 REDIRECT TO CAMPGROUND SHOW PAGE
 
-## 5. Module Exports
-
+## 5. Module Exports & Imports
 This function will clean and dry up the code 
 Make more modular and organized
 
-PROS & CONS
-
+#### PROS & CONS
 Making the code reusable
 Required more often than the single File.
 
-EXPORTING
-
+#### 1. EXPORTING
 `Module.export= ANYTHING WE WANT TO EXPORT`
 
-IMPORTING
-
+#### 2. IMPORTING
 `var anything = require(“./models/post”);`
 
-MULTIPLE EXPORT / MIDDLE WARE REFACTORING
-
+#### MULTIPLE EXPORT / MIDDLE WARE REFACTORING
 ```
 middlewareObj.checkCommentOwnership = function(req,res,next){
 _____________FUNCTION DEFENTION_______________
@@ -330,7 +316,7 @@ _____________FUNCTION DEFENTION_______________
 module.export= middlewareObj
 ```
 
-IMPORTING:
+#### IMPORTING:
 ```js
 var middleware = require(“./models/middlewareObj”);
 middleware.isLoggedIn

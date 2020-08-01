@@ -5,7 +5,9 @@ sidebar_label: Introduction
 ---
 
 React is a JavaScript library for building user interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data that needs to be recorded.
-## 1. Hello React
+## 1. Introduction
+#### JSX
+It is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript. JSX produces React “elements”.
 ### 1. Exploring JSX
 ``` javascript
 var template = (
@@ -78,8 +80,7 @@ var template3 = (
 READ CHECK FOR SUPPORTED EVENTS AND ATTRIBUTES
 https://reactjs.org/docs/events.html
 
-React Docs Events
-EXAMPLE :
+#### EXAMPLE
 ``` javascript
 <button onclick="activateLasers()">
   Activate Lasers
@@ -95,8 +96,7 @@ It is slightly different in React:
 
 
 ### 5. Manual Data Binding
-EXAMPLE :
-``` javascript
+```js
 let count = 0;
 let addone = () => {
     count++;
@@ -158,7 +158,7 @@ Const = [10,20,30,40,50];
       	})
 }
 ```
-EXAMPLE [ FILE.1]
+### EXAMPLE [ FILE.1]
 
 ## 2. React Components
 * Reusable 

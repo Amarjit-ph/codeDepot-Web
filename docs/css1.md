@@ -14,18 +14,22 @@ External stylesheets are stored in CSS files
 1. Inline style (inside an HTML element)
 2. External and internal style sheets (in the head section)
 
-INLINE
+#### 1. INLINE
+```css
+<h1 style="color:blue;text-align:center;">
+This is a heading </h1>
+```
 
-`<h1 style="color:blue;text-align:center;">This is a heading</h1>`
+#### 2. EXTERNAL OR INTERNAL
 
-EXTERNAL OR INTERNAL
-
-`h1 {
+```css
+h1 {
   color: navy;
-}`
+}
+```
 
 
-EXAMPLE :
+#### CSS EXAMPLE :
 ``` css
 body {
   background-color: lightblue;
@@ -102,7 +106,7 @@ Selects all `<p>` elements
 
 `p{ }`
 
-### Elements Inside Element
+### Element Inside Element or Class
 ``` css
 .class {
     color: white;

@@ -4,9 +4,13 @@ title: Node.js
 sidebar_label: Backend
 ---
 
+
 import  useBaseUrl from '@docusaurus/useBaseUrl';
 
-## 1. Node js Backend
+Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside a web browser.
+
+
+## 1. Introduction
 
 - INTERNET BASICS
 - STATIC VS DYNAMIC SITES
@@ -17,14 +21,14 @@ import  useBaseUrl from '@docusaurus/useBaseUrl';
 
 1. REQUEST A WEBSITE
 
-`http://www.Facebook.com`
+```http://www.Facebook.com```
 
 2. FIND THE RIGHT ADDRESS
 
 Your query is submitted to you ISP (Internet Service Provider)
 Your ISP, The DNS takes the Domain name and turn it into IP Address
 
-`http://www.Facebook.com`>`23.234.45.175`
+`http://www.Facebook.com` > `23.234.45.175`
 
 3. GOING TO THE ADDRESS
 
@@ -57,7 +61,7 @@ Technologies that are a particular web application used.
 <img src={useBaseUrl('node/Generic.png')} />
 
 
-#### NODEJS BACK END TECHNOLOGIES
+#### [+] NODEJS BACK END TECHNOLOGIES
 HTML-JAVASCRIPT-CSS-NODEJS-MONGO DB
 
 <img src={useBaseUrl('node/Node.png')} />
@@ -205,7 +209,7 @@ app.use(express.static(“public”));
 ```
 This public directory or folder will be serve with express server
 
-### 5.Header & Footer
+### 5. Header & Footer
 
 Create the partials folder inside views folder and create the header and footer file. And Include them in Every EJS file.
 
@@ -220,7 +224,7 @@ ON EJS:
 
 To post some data to server or collect information form user via HTML form we use body parser to pass the data form HTML form to server.
 
-ON EJS: [ EFFICIENT WAY WARPING DATA INTO OBJECT FORM ]
+#### ON EJS: [ EFFICIENT WAY WARPING DATA INTO OBJECT FORM ]
 ``` html
 <form action=”/route/” method=”POST”>
 <input type=”text” name=”User[Name]”>
@@ -229,12 +233,10 @@ ON EJS: [ EFFICIENT WAY WARPING DATA INTO OBJECT FORM ]
 </form>
 ```
 
-- DATA FROM HTML FORM
-
+#### DATA FROM HTML FORM
 Data from the HTML form will be available on server at `[ req.body ]`.
 
-- ON SERVER CODE
-
+#### ON SERVER CODE
 ```js
 var bodyParser = require(“body-parser”);
 app.use(bodyParser.urlencoded({extended:true});
@@ -243,8 +245,7 @@ app.post(“/route/”,function(req,res){
 console.log(req.body.User); });
 ```
 
-OUPUT ON CONSOLE
-
+#### OUPUT ON CONSOLE
 ```
 {       
     Name: DATA,

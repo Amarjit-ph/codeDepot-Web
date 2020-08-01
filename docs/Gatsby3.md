@@ -170,11 +170,11 @@ export default Indexpage
 4. Setup Environment Variable
 5. Deploy
 
-### 6. Rebuild New Content
+### 1. Rebuild New Content
 1. Go to Deploys tab
 2. Tigger Deploy - Clear Cache and Deploy site
 3. Restart Automatically
 
-### 7. Continious Integration
+### 2. Continious Integration
 1. git push
 2. Auto Deploy Workflow from Github

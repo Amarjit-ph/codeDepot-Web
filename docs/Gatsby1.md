@@ -14,11 +14,14 @@ blazing fast websites and apps
 
 
 ## 1. Starter Template
-`gatsby new Gastby-BootCamp https://github.com/gatsbyjs/gatsby-starter-hello-world.git`  
+```cmd
+gatsby new Gastby-BootCamp
+https://github.com/gatsbyjs/gatsby-starter-hello-world.git
+```
 
 ## 2. Gatsby Pages
 
-SOURCE DIRECTORY
+#### SOURCE DIRECTORY
 PAGES = Generate Sites [ROUTES]
 
 * pages/contact = .com/contact
@@ -28,7 +31,8 @@ PAGES = Generate Sites [ROUTES]
 Javascript files that should render React Components
 
 ``` Javascript 
-import React from "react"
+import React from 'react'
+
 const Indexpage = () => {
     return (
         <div>
@@ -41,9 +45,9 @@ const Indexpage = () => {
 export default Indexpage
 ```
 
-src/page/blog.js = localhost:8000/blog
+` src/page/blog.js = localhost:8000/blog`
 
-``` javascript
+``` js
 import React from 'react'
 
 export default function blogPage() {
@@ -58,14 +62,19 @@ export default function blogPage() {
 
 ## 3. Link Between Pages
 
-### 1. Using Anchor tag [ FULL PAGE REFRESH ]
-` <a href="/contact"> Contact me</a>`
+#### 1. Using Anchor tag | Full Page Reload |
+```js
+<a href="/contact"> Contact me</a>
+```
 
-### 2. Using import { Link } from 'gatsby'
-`<p> Need a Developer ? <Link to="/contact"> Contact Me</Link> </p>`
+#### 2. Using import { Link } from 'gatsby'
+```js
+<p> Need a Developer ? <Link to="/contact">
+Contact Me</Link> </p>
+```
 
 
-COMPONENTS FOLDER
+#### COMPONENTS FOLDER
 `src/components/React-Components-live-Here`
 Create Header & Footer in Component Folder
 
@@ -87,8 +96,7 @@ export default function Layout(props) {
 
 2. Use Layout in Other pages 
 
-[ PAGE 1 ]
-
+#### [ PAGE 1 ]
 src/pages/index.js
 
 ``` javascript 
@@ -111,8 +119,7 @@ const Indexpage = () => {
 }
 export default Indexpage
 ```
-[ PAGE 2]
-
+#### [ PAGE 2]
 src/pages/about.js
 
 ``` javascript
@@ -171,7 +178,7 @@ $color:green;
 * Styles are globally acessible
 * Target by Class Name
 
-SOLUTION IS CSS MODULES
+#### SOLUTION IS CSS MODULES
 Make Local Scope
 
 1. Create Scss/css module
@@ -260,7 +267,7 @@ export default function Layout(props) {
 </nav>
 ```
 
-## 6.3 Hover & Active
+### 6.3 Hover & Active
 ``` scss
 
 .nav_item:hover {

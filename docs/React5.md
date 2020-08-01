@@ -1,11 +1,13 @@
 ---
 id: React5
-title: Firebase & React
-sidebar_label: Firebase & React
+title: Firebase & Redux
+sidebar_label: Firebase & Redux
 ---
 
 ## 1. Firebase
-### 1.1 Configure Firebase
+The Firebase Realtime Database is a cloud-hosted database. ... When you build cross-platform apps with our iOS, Android, and JavaScript SDKs, all of your clients share one Realtime Database instance and automatically receive updates with the newest data.
+
+### 1. Configure Firebase
 ``` javascript
 import * as firebase from 'firebase';
 
@@ -21,7 +23,7 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 ```
 
-### 1.2 Create Data
+### 2. Create Data
 ``` javascript
 database.ref().set({
     name: 'Amarjit Pheiroijam',
@@ -37,7 +39,7 @@ database.ref().set({
     }
 });
 ```
-### 1.3 Replace All data
+### 3. Replace All data
 ``` javascript
 //REPLACE ALL DATA
 database.ref().set("this is my data");
@@ -48,13 +50,13 @@ database.ref().set({
      age: 100
 });
 ```
-### 1.4 Replace specific Data
+### 4. Replace specific Data
 ``` javascript
 //REPLACE SPECIFIC DATA
 database.ref('age').set(100);
 ```
 
-### 1.5 Update Data
+### 5. Update Data
 ``` javascript
 //UPDATE SPECIFIC DATA
 database.ref('name').set('Pheiroijam Amarjit');
@@ -84,7 +86,7 @@ database.ref().update({
 ```
 
 
-### 1.6 Remove Data
+### 6. Remove Data
 ``` javascript
 //REMOVE ALL DATA
 database.ref().remove()
@@ -104,7 +106,7 @@ database.ref('isSingle').set(null)
 database.ref('location/city').set(null)
 ```
 
-### 1.7 Fetch Data
+### 7. Fetch Data
 ``` javascript
 //FETCH ALL DATA
 database.ref()
@@ -131,7 +133,7 @@ database.ref(location/city)
 ```
 
 
-### 1.8 Subscriptions
+### 8. Subscriptions
 
 ``` javascript
 //SUBSCRIBE
@@ -174,7 +176,7 @@ database.ref().on('value', (snapshot) => {
 });
 ```
 
-## 1.9 Array in Firebase
+### 9. Array in Firebase
 
 * ADD TO ARRAY TYPE USING PUSH
 * UNIQUE ID S CREATED AS INDEX
@@ -219,7 +221,7 @@ database.ref('expense').once('value')
         console.log('\n\n\n\n', expenses);
     });
 ```
-## 1.10 Subscription Functions
+## 2. Subscription Functions
 
 ### 1. Child Remove
 ```

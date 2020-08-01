@@ -4,6 +4,8 @@ title: ES6 & Heroku
 sidebar_label: ES6 & Heroku
 ---
 ## 1. ES6
+ECMAScript is a scripting-language specification standardized by Ecma International. It was created to standardize JavaScript to help foster multiple independent implementations
+
 ### 1. Let & Constant
 ``` javascript 
 // Using let
@@ -366,21 +368,31 @@ promise.then((data) => {
 
 ## 2. Heroku Deploy
 
-``Heroku --version``
-``Herkou login``
+```cmd
+Heroku --version
+```
+```cmd
+Herkou login
+```
 
-``Heroku create Name-app``
+```cmd
+Heroku create Name-app
+```
 
 * Create a new Application in Heroku
 * Add new git remote for deploying to heroku
 
-``Git push heroku master``
+```cmd
+Git push heroku master
+```
 
-ENVIRONMENT VARIABLE CONFIGURATION 
-``Heroku config``
-``Heroku config:set KEY=value KEY2=value ``
+#### ENVIRONMENT VARIABLE CONFIGURATION 
+```cmd
+Heroku config
+Heroku config:set KEY=value KEY2=value
+```
 
-Scripts from Heroku
+#### HEROKU SCRIPT
 ``` json
 Scripts:{
     "start": "node server.js",

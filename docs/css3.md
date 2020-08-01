@@ -128,14 +128,14 @@ EXPLAINATION :
 - Set margin: 0; and padding: 0; to remove browser default settings
 
 
-### 1.Vertical Navigation Bar
+### 1. Vertical Navigation Bar
 ```css
 li{
   display: block;
 }
 ```
 
-### 2.Horizontal Navigation Bar
+### 2. Horizontal Navigation Bar
 One way to build a horizontal navigation bar is to specify the `<li>` elements as inline, in addition to the "standard" code from the previous page:
 
 ```css
@@ -181,7 +181,7 @@ Create a dropdown box that appears when the user moves the mouse over an element
 # 6. Website Layout
 A website is often divided into headers, menus, content and a footer:
 
-<img src={useBaseUrl('css/Webiste-Layout.png')} />
+<img src={useBaseUrl('css/Website-Layout.png')} />
 
 
 ### 1. Header
@@ -195,7 +195,7 @@ A header is usually located at the top of the website (or right below a top navi
 }
 ```
 
-### 2.Navigation Bar
+### 2. Navigation Bar
 A navigation bar contains a list of links to help visitors navigating through your website:
 
 ``` css

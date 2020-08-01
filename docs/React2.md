@@ -3,6 +3,8 @@ id: React2
 title: State & Life Cycle
 sidebar_label: State & Life Cycle
 ---
+ The state object is where you store property values that belongs to the component. When the state object changes, the component re-renders.
+
 State Re Render UI When the Data is change
 
 ## 1. React State
@@ -96,7 +98,7 @@ const getName = obj.getName.bind({ name: "Andrew" });
 console.log(getName());
 ```
 
-### Examples
+### Example
 ``` javascript 
 class Options extends React.Component {
   removeAll() {

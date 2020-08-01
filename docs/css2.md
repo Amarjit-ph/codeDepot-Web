@@ -100,9 +100,9 @@ font-family: Arial, Helvetica, sans-serif;
 font-family: "Lucida Console", Courier, monospace;
 ```
 ### 2. Font Style
-font-style: normal;
-font-style: italic;
-font-style: oblique;
+- font-style: normal;
+- font-style: italic;
+- font-style: oblique;
 
 ### 3. Font Size
 The font-size property sets the size of the text.

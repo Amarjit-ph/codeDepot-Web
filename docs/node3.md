@@ -9,20 +9,19 @@ It is the process of determining whether Someone or something, in fact,
 Who or what it declared itself to be.
 Users are Usually identify with User ID and authentication is accomplished when the user provides a credential.
 
-CREDENTIAL
+#### CREDENTIAL
 
 It is something that’s proof of a claim you make about yourself
 Or your skills.
 
-INTRODUCTION TO AUTHENTICATION
+#### INTRODUCTION TO AUTHENTICATION
 
-TOOLS USED:
+#### TOOLS USED:
 - PASSPORT
 - PASSPORT LOCAL
 - PASSPORT LOCAL MONGOOSE
 
-AUTHENTICATION REQUIREMENTS
-
+#### AUTHENTICATION REQUIREMENTS
 - Express 
 - Express-session
 - Body-parser
@@ -33,7 +32,7 @@ AUTHENTICATION REQUIREMENTS
 - Passport-local-mongoose
 - Embedded Javascript 
 
-USER SCHEMA
+#### USER SCHEMA
 ```js
 Var userSchema = new mongoose.Schema({
 Username:String,
@@ -45,7 +44,7 @@ userSchema.plugin(passportLocalMongoose);
 module.export = mongoose.module(“User”,userSchema);
 ```
 
-ON APPLICATION JS FILE [ SERVER FILE ]
+#### ON APPLICATION JS FILE [ SERVER FILE ]
 ```js
 #SETUPS
 #DATABASE
@@ -74,7 +73,7 @@ passport.deserializeUser(User.deserializeUser());
 Responsible for Reading the data from session and sending the data, Encoding 
 And decoding of Data.
 
-REGISTER USER WITH PASSWORD
+#### REGISTER USER WITH PASSWORD
 ```js
 App.post(“/register”,function(req,res){
 User.register(newUser({username:req.body.username}),
@@ -88,8 +87,8 @@ Req.body.password,function(err,user)
 ```
 Password is passed as the second argument since it has to hash and salted
 In database to store the password.
-LOGIN ROUTES
-APPILCATION GET FORM ROUTE
+#### LOGIN ROUTES
+#### APPILCATION GET FORM ROUTE
 ```js
 app.post(“/login”,passport.authenticate(“local”,
 {	SuccessRedirect:”/secret”,
@@ -100,7 +99,7 @@ app.post(“/login”,passport.authenticate(“local”,
 Passport will automatically take req.body.password and username
 From the request
 
-LOGOUT ROUTE
+#### LOGOUT ROUTE
 ```js
 app.get(“/logout”,function(req,res){
 	req.logout()l
@@ -121,7 +120,7 @@ res.redirect(“/login”);
 }
 ```
 
-USING MIDDLE WARE
+#### USING MIDDLE WARE
 ```js
 App.get(“/Secret”,isLoggedIn,function(req,res){
 	res.render(“secret”);
@@ -133,7 +132,7 @@ The function(req,res) After isLoggedIn then it will be executed.
 	 
 
 ## 3. Locals
-MAKE DATA AVAILABLE IN EVERY ROUTE & TEMPLATE
+#### MAKE DATA AVAILABLE IN EVERY ROUTE & TEMPLATE
 [ INFORMATION OF CURRENT USER ]
 
 Current User information is available at `[REQ.USER]`
@@ -151,7 +150,7 @@ As currentUser in Routes and Templates.
 
 Make different Folder `[Routes]`
 
-[ CAMPGROUND ]
+#### [ CAMPGROUND ]
 ``` js
 var express = require(“express”);
 var Router  = express.Router();
@@ -164,7 +163,7 @@ Router.post(“/”,function(req,res)
 
 module.export = Router 
 ```
-[ON APP.JS]
+#### [ON APP.JS]
 ```js
 var CampRoutes(“./routes/Campground”);
 var IndexRoutes(“./routes/Index”);
@@ -186,18 +185,18 @@ Comparing the two Foundcampid and req.user._id with the method given by mongodb
 
 ## 6. Method Override
 
-EDIT & UPDATE ROUTES
+#### EDIT & UPDATE ROUTES
 ```js
 var methodOverride = require(“method-override”);
 app.use(methodOverride(“_method”));
 ```
 
-EJS FORM:
+#### EJS FORM:
 ``` html
 <form action=”/blogs/<%=blog._id%>?_method=PUT” method=”POST>
 ```
 
-APP.JS
+#### APP.JS
 ```js
 app.put(“/blogs/:id”,function(req,res){
 Blog.findbyIdAndUpdatet(req.params.id,req.body.blog,function(err,foundBlog)
@@ -212,7 +211,7 @@ var flash = require(“connect-flash”);
 app.use(flash());
 ```
 
-NORMAL FLASH
+#### NORMAL FLASH
 ```js
 req.flash(“error”,”PLEASE LOG IN”);
 res.redirect(“/login”);
@@ -220,7 +219,7 @@ res.redirect(“/login”);
 res.render(“login”,{message:req.flash(“error”);
 ```
 
-FLASH EVERYROUTE
+#### FLASH EVERYROUTE
 ```js
 app.use(function(req,res,next){
 res.locals.error = req.flash(“error”);
@@ -229,7 +228,7 @@ next();
 });
 ```
 
-AVAILABLE IN EVERY TEMPLATE
+#### AVAILABLE IN EVERY TEMPLATE
 ``` js
 req.flash(“error”,”INVAILD PASSWORD”);
 res.redirect(“/login”);
