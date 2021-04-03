@@ -1,89 +1,146 @@
 ---
 id: css4
-title: Flex Box
-sidebar_label: Flex Box
+title: Combinators
+sidebar_label: Combinators 
 ---
 
-1. Determine which elements you want to control with flexbox
-2. Wrap them inside an outer container
-3. Set Display property of the container to flex
 
-## 1. Flex Flow
-Choose the Main Axis
+## Introduction
+A combinator is something that explains the relationship between the selectors.
 
-#### ROW 
-1. Main >
-2. Cross ^
+A CSS selector can contain more than one simple selector. Between the simple selectors, we can include a combinator.
 
-#### COLUMN
-1. Main ^
-2. Cross >
+There are four different combinators in CSS:
+- descendant selector (space)
+- child selector (>)
+- adjacent sibling selector (+)
+- general sibling selector (~)
 
+### Descendant Selector
+The descendant selector matches all elements that are descendants of a specified element.
 
-Flex Flow Options
-1. flex-flow: row; [Default]
-2. flex-flow: column;
-3. flex-flow : row-reverse;
-4. flex-flow : column-reverse;
+The following example selects all `<p>` elements inside `<div>` elements: 
+```css
+div p {
+  background-color: yellow;
+}
+```
 
-## 2. Flex Wrap 
-Prevent overflow of items
+### Child Selector
+The child selector selects all elements that are the children of a specified element.
 
-1. flex-wrap:wrap;
-2. flex-wrap:wrap-reverse;
+The following example selects all `<p>` elements that are children of a `<div>` element:
+```css
+div > p {
+  background-color: yellow;
+}
+```
 
-## 3. Justify Content 
-[ MAIN AXIS ] 
+### Adjacent Sibling Selector
+The adjacent sibling selector selects all elements that are the adjacent siblings of a specified element.
 
-How the remaining space in the container will be distributed around the flex elements if there is any remaining spaces in the container.
+Sibling elements must have the same parent element, and "adjacent" means "immediately following".
 
-1. Flex-start [Deafault] : Align items to the Begining of the flex-container
-2. Flex-end : Align items to the end of flex container
-3. Center : Centers the content inside the flex container
-4. Space-between : Seperates the content with equal spaces with no spaces at the begining or at the end of the container
-5. Space-around : Seperates the content with equal spaces and add spaces at the end of the container
+The following example selects all `<p>` elements that are placed immediately after `<div>` elements:
 
-## 4. Align Items 
-[ CROSS AXIS ]
+```css
+div + p {
+  background-color: yellow;
+}
+```
 
-Justify-content work along the main axis while align items work along the cross-axis
+### General Sibling Selector
+The general sibling selector selects all elements that are siblings of a specified element.
 
-flex-start : Aligns items along the cross axis to the start of the flex container
-flex-end : Align items along the cross axis to the end of flex container
-Center : Centers the content inside the flex container along the cross axis
-stretch [Default] : Stretches the element to fll up the container
+The following example selects all `<p>` elements that are siblings of `<div>` elements: 
 
-## 5. Align Self 
-[ Single Element ]
-
-- Works on Cross axis
-- Accepts same values as Align Items
-
-Align Self affect a single flex element only inside the Flex container
-
-## 6. Order Property
-- order: 1 = Last
-- order: -1 = First
-
-Order are Reversed in number
-
-## 7. Flex Grow
-How much the Flex item will grow
-How much Space the element will take relative to other eliment
-
-flex-grow:1 = Take full Size
-
-## 7. Flex Shrink
-Shrinking the Item relative to elements
-- flex-shrink : 0 > Not Shrink
-
-## 8. Flex basis
-Set the intial size of the flex element before distribution any free space of the container
-
-- flex-basis:300px;
-- flex-basis:auto;
+```css
+div ~ p {
+  background-color: yellow;
+}
+```
 
 
+## Pseudo class
+A pseudo-class is used to define a special state of an element.
+1. Style an element when a user mouses over it
+2. Style visited and unvisited links differently
+3. Style an element when it gets focus
+
+``` css title="Pseudo class"
+/* unvisited link */
+a:link {
+  color: #FF0000;
+}
+
+/* visited link */
+a:visited {
+  color: #00FF00;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF00FF;
+}
+
+/* selected link */
+a:active {
+  color: #0000FF;
+}
+```
+
+## Opacity
+The opacity property can take a value from 0.0 - 1.0. The lower value, the more transparent:
+```css title="Opacity"
+img {
+  opacity: 0.5;
+}
+
+// Opacity when hover
+
+img:hover {
+  opacity: 1.0;
+}
+```
+
+## Navigation Bars
+Navigation Bar = List of Links<br/>
+A navigation bar needs standard HTML as a base.
+
+A navigation bar is basically a list of links, so using the `<ul>` and `<li>` elements makes perfect sense:
+
+``` html title="Navigation - Html"
+<ul>
+  <li><a href="default.asp">Home</a></li>
+  <li><a href="news.asp">News</a></li>
+  <li><a href="contact.asp">Contact</a></li>
+  <li><a href="about.asp">About</a></li>
+</ul>
+```
+``` css title="Navigation - Css"
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+```
+**EXPLAINATION :**
+- `list-style-type: none;` - Removes the bullets. A navigation bar does not need list markers
+- Set `margin: 0; and padding: 0;` to remove browser default settings
 
 
+### Vertical Navigation Bar
+```css
+li{
+  display: block;
+}
+```
+### Horizontal Navigation Bar
+One way to build a horizontal navigation bar is to specify the `<li>` elements as inline, in addition to the "standard" code from the previous page:
+
+```css
+li {
+  display: inline;
+}
+```
 

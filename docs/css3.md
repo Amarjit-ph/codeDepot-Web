@@ -1,269 +1,83 @@
 ---
 id: css3
-title: Cascading Style Sheet
-sidebar_label: Combinators
+title: Layout
+sidebar_label: Layout
 ---
 import  useBaseUrl from '@docusaurus/useBaseUrl';
 
-## 1. Combinators
-A combinator is something that explains the relationship between the selectors.
+## Introduction
+The display property is the most important CSS property for controlling layout.
 
-A CSS selector can contain more than one simple selector. Between the simple selectors, we can include a combinator.
+The display property specifies if/how an element is displayed.
 
-There are four different combinators in CSS:
-- descendant selector (space)
-- child selector (>)
-- adjacent sibling selector (+)
-- general sibling selector (~)
+Every HTML element has a default display value depending on what type of element it is. The default display value for most elements is block or inline.
 
-### 1. Descendant Selector
-The descendant selector matches all elements that are descendants of a specified element.
+## Block level Elements
+A block-level element always starts on a new line and takes up the full width available (stretches out to the left and right as far as it can).
 
-The following example selects all `<p>` elements inside `<div>` elements: 
-```css
-div p {
-  background-color: yellow;
-}
+``` html title="Block level Elements"
+<h1> <div> <p> <form> <header> <footer> <section>
 ```
 
-### 2. Child Selector
-The child selector selects all elements that are the children of a specified element.
+## Inline Elements
+An inline element does not start on a new line and only takes up as much width as necessary.
 
-The following example selects all `<p>` elements that are children of a `<div>` element:
-```css
-div > p {
-  background-color: yellow;
-}
+This is an inline `<span>` element inside a paragraph.
+
+```html title="Inline Elements"
+<span> <a> <img>
 ```
+## Display
 
-### 3. Adjacent Sibling Selector
-The adjacent sibling selector selects all elements that are the adjacent siblings of a specified element.
+Display is commonly used with JavaScript to hide and show elements without deleting and recreating them. <br/>
+` display: none`
 
-Sibling elements must have the same parent element, and "adjacent" means "immediately following".
+## Max Width
+A block-level element always takes up the full width available (stretches out to the left and right as far as it can).
 
-The following example selects all `<p>` elements that are placed immediately after `<div>` elements:
+Setting the width of a block-level element will prevent it from stretching out to the edges of its container. 
 
-```css
-div + p {
-  background-color: yellow;
-}
-```
+Then, you can set the margins to auto, to horizontally center the element within its container. The element will take up the specified width, and the remaining space will be split equally between the two margins:
 
-### 4.General Sibling Selector
-The general sibling selector selects all elements that are siblings of a specified element.
+[Example - Max-with with Automargin in W3 School](https://www.w3schools.com/css/tryit.asp?filename=trycss_max-width)
 
-The following example selects all `<p>` elements that are siblings of `<div>` elements: 
+## Position
+The position property specifies the type of positioning method used for an element.
+There are five different position values:
 
-```css
-div ~ p {
-  background-color: yellow;
-}
-```
+1. **Static** is not positioned in any special way, it is always positioned according to the normal flow of the page.
+
+2. **Relative** is positioned relative to its normal position.Setting the top, right, bottom, and left properties of a relatively-positioned element will cause it to be adjusted away from its normal position. Other content will not be adjusted to fit into any gap left by the element.
+
+3. **fixed** is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled. The top, right, bottom, and left properties are used to position the element.
+
+4. **absolute** is positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).
+However; if an absolute positioned element has no positioned ancestors, it uses the document body, and moves along with page scrolling.
+
+5. **sticky** is positioned based on the user's scroll position.
+A sticky element toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed)
 
 
-## 2. Pseudo-classes
-A pseudo-class is used to define a special state of an element.
-- Style an element when a user mouses over it
-- Style visited and unvisited links differently
-- Style an element when it gets focus
-``` css
-/* unvisited link */
-a:link {
-  color: #FF0000;
-}
+## Float 
+The `float` property is used for positioning and formatting content e.g. let an image float left to the text in a container.
 
-/* visited link */
-a:visited {
-  color: #00FF00;
-}
+- **left** - The element floats to the left of its container
+- **right** - The element floats to the right of its container
+- **none** - The element does not float (will be displayed just where it occurs in the text). This is default
+- **inherit** - The element inherits the float value of its parent
+In its simplest use, the float property can be used to wrap text around images.
 
-/* mouse over link */
-a:hover {
-  color: #FF00FF;
-}
-
-/* selected link */
-a:active {
-  color: #0000FF;
-}
-```
-
-## 3. Opacity / Transparency
-The opacity property can take a value from 0.0 - 1.0. The lower value, the more transparent:
-```css
+```css title="Float"
 img {
-  opacity: 0.5;
+  float: right;
 }
 ```
-OPACITY OVER HOVER
-```css
-img:hover {
-  opacity: 1.0;
-}
-```
+## Clear
+The `clear` property specifies what elements can float beside the cleared element and on which side.
 
-## 4. Navigation Bars
-Navigation Bar = List of Links
-A navigation bar needs standard HTML as a base.
-
-A navigation bar is basically a list of links, so using the `<ul>` and `<li>` elements makes perfect sense:
-
-``` html
-<ul>
-  <li><a href="default.asp">Home</a></li>
-  <li><a href="news.asp">News</a></li>
-  <li><a href="contact.asp">Contact</a></li>
-  <li><a href="about.asp">About</a></li>
-</ul>
-```
-``` css
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-```
-EXPLAINATION :
-- list-style-type: none; - Removes the bullets. A navigation bar does not need list markers
-- Set margin: 0; and padding: 0; to remove browser default settings
-
-
-### 1. Vertical Navigation Bar
-```css
-li{
-  display: block;
-}
-```
-
-### 2. Horizontal Navigation Bar
-One way to build a horizontal navigation bar is to specify the `<li>` elements as inline, in addition to the "standard" code from the previous page:
-
-```css
-li {
-  display: inline;
-}
-```
-
-## 5. Dropdowns
-
-Create a dropdown box that appears when the user moves the mouse over an element.
-
-```html
-<style>
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-</style>
-
-<div class="dropdown">
-  <span>Mouse over me</span>
-  <div class="dropdown-content">
-    <p>Hello World!</p>
-  </div>
-</div>
-```
-
-# 6. Website Layout
-A website is often divided into headers, menus, content and a footer:
-
-<img src={useBaseUrl('css/Website-Layout.png')} />
-
-
-### 1. Header
-A header is usually located at the top of the website (or right below a top navigation menu). It often contains a logo or the website name:
-
-```css
-.header {
-  background-color: #F1F1F1;
-  text-align: center;
-  padding: 20px;
-}
-```
-
-### 2. Navigation Bar
-A navigation bar contains a list of links to help visitors navigating through your website:
-
-``` css
-/* The navbar container */
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-/* Navbar links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Links - change color on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-```
-
-### 3. Content
-The layout in this section, often depends on the target users. The most common layout is one (or combining them) of the following:
-
-- 1-column (often used for mobile browsers)
-- 2-column (often used for tablets and laptops)
-- 3-column layout (only used for desktops)
-
-We will create a 3-column layout, and change it to a 1-column layout on smaller screens:
-
-```css
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 33.33%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-}
-```
-
-### 4. Footer
-The footer is placed at the bottom of your page. It often contains information like copyright and contact info:
-
-```css
-.footer {
-  background-color: #F1F1F1;
-  text-align: center;
-  padding: 10px;
-}
-```
-
-## 7. Units
-<img src={useBaseUrl('css/Units.png')} />
-
+- **none** - Allows floating elements on both sides. This is default
+- **left** - No floating elements allowed on the left side
+- **right** - No floating elements allowed on the right side
+- **both** - No floating elements allowed on either the left or the right side
+- **inherit** - The element inherits the clear value of its parent
+The most common way to use the clear property is after you have used a float property on an element.

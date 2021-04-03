@@ -9,10 +9,10 @@
 
 module.exports = {
   title: 'Code Depot',
-  tagline: 'Personal Code Storage Space for Flawless coding Experience & References',
+  tagline: 'Personal code storage space for improving coding experience.',
   url: 'https://codeDepot.netlify.com',
   baseUrl: '/',
-  favicon: 'img/net.ico',
+  favicon: 'img/code-depot.svg',
   organizationName: 'Amarjit Pheiroijam', // Usually your GitHub org/user name.
   projectName: 'Code depot', // Usually your repo name.
 
@@ -21,13 +21,13 @@ module.exports = {
       title: 'Code Depot',
       logo: {
         alt: 'Amarjit Pheiroijam',
-        src: 'img/Amarjit.svg',
+        src: 'img/code-depot.svg',
       },
       links: [
         {
           to: 'docs/css1',
           activeBasePath: 'docs',
-          label: 'Documentations',
+          label: 'Docs',
           position: 'left',
         },
         // { to: 'blog', label: 'Articles', position: 'left' },
@@ -37,6 +37,11 @@ module.exports = {
           label: 'Github',
           position: 'left',
         },
+        {
+          href: 'https://www.linkedin.com/in/amarjit-pheiroijam-234bba166/',
+          label: 'Linkin',
+          position: 'left',
+        },
       ],
     },
 
@@ -44,7 +49,7 @@ module.exports = {
       style: 'dark',
       links: [
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Amarjit Pheiroijam`,
+      copyright: `Copyright © ${new Date().getFullYear()} CodeDepot, Built with Docusaurus.`,
     },
   },
   presets: [

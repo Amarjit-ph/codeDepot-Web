@@ -17,28 +17,28 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
-    imageUrl: 'img/code_review.svg',
+    title: <>Code Storage</>,
+    imageUrl: 'img/1.svg',
     description: (
       <>
-        Code Depot was designed from the ground up to be easily
-        used and retrive informations quickly.
+        Code Depot is a code storage space
+        which improve personal coding experience & references.
       </>
     ),
   },
   {
     title: <>Development Focus</>,
-    imageUrl: 'img/Dev-focus.svg',
+    imageUrl: 'img/2.svg',
     description: (
       <>
-        Code Depot lets you focus on your Development by
-        providing snippets and Informations Instantly.
+        Code Depot helps you stay focus on your development by
+        providing snippets and information instantly.
       </>
     ),
   },
   {
     title: <>Fluid Workflow</>,
-    imageUrl: 'img/Program.svg',
+    imageUrl: 'img/3.svg',
     description: (
       <>
         Code Depot provide you fast copy and paste which will highly incearse
@@ -104,6 +104,7 @@ function Home() {
           </section>
         )}
       </main>
+    
     </Layout>
   );
 }
