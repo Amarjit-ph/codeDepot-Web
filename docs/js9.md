@@ -11,38 +11,75 @@ The basic idea of OOP is that we use objects to model real world things that we 
 - Properties, Fields & Methods
 - Inheritance
 
-```js title=" Explaination"
-PRODUCT
-- Define characteristics of each
-- Fetch from server
+Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior. <br/> After procedural programming which include only functions and data, Opp solved the problem of interdependency and mixed code.
 
-PRODUCT LIST
-- List of Products
-- Fetched from a server
-- Object holds adding & removing logic
+## Principles of OOP
 
-SHOPPING CART
-- Renders cart products
-- Total and allows user to order
-- Object holds ordering logic
+Object-oriented programming is based on the following principles:
+
+1. Encapsulation<br/> The implementation and state of each object are privately held inside a defined boundary, or class. Other objects do not have access to this class or the authority to make changes but are only able to call a list of public functions, or methods. This characteristic of data hiding provides greater program security and avoids unintended data corruption.
+
+2. Abstraction<br/> Objects only reveal internal mechanisms that are relevant for the use of other objects, hiding any unnecessary implementation code. This concept helps developers more easily make changes and additions over time.
+
+3. Inheritance<br/> Relationships and subclasses between objects can be assigned, allowing developers to reuse a common logic while still maintaining a unique hierarchy. This property of OOP forces a more thorough data analysis, reduces development time and ensures a higher level of accuracy.
+
+4. Polymorphism<br/> Objects can take on more than one form depending on the context. The program will determine which meaning or usage is necessary for each execution of that object, cutting down the need to duplicate code.
+
+**Benefits of OOP**
+
+1. Encapsulation - Reduce Complexity
+2. Abstraction - Reduce Complexity + isolate impace of changes
+3. Inheritance - Eliminate redundant code
+4. Polymorphism - Use in diffrent forms
+
+## Object
+
+Ways to Create Objects
+
+```js title="Object Literals"
+const circle = {
+  raduis: 1,
+  location: {
+    x: 1,
+    y: 5,
+  },
+  draw: function () {
+    console.log('Draw');
+  },
+};
+```
+
+```js title="Factory Function"
+function createCircle(radius){
+    return {
+        radius,
+        location:{
+            x:1,
+            y:2
+        },
+        draw:function({
+            console.log("CIRCLE");
+        })
+    };
+}
+
+const circle = createCircle(1)
+circle.draw();
 
 ```
 
-```js title="Object"
-const products = [
-  {
-    title: 'Pillow',
-    imageUrl: 'https://www.image.com',
-    price: 150,
-    description: 'A soft pillow for good night sleep',
-  },
-  {
-    title: 'Carpet',
-    imageUrl: 'https://www.image.com',
-    price: 250,
-    description: 'A carpet which is great for room',
-  },
-];
+```js title="Constructor Function"
+function Circle(radius){
+   this.radius = radius,
+   this.draw = function(){
+            console.log("CIRCLE");
+        }
+    };
+}
+
+const circle = new Circle(1)
+circle.draw();
+
 ```
 
 ## Class

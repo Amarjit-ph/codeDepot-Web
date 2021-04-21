@@ -118,6 +118,6 @@ Properties are formed when the browser parses the HTML and generates the DOM. Ea
 - Value of a property is variable.
 - No such job defined.
 
-## Useful Sites
+## Useful Links
 
-Thorough DOM Introduction on MDN (also check the linked guides on the left on that page): https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction
+1. [Thorough DOM Introduction on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)

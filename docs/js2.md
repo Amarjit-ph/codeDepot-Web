@@ -1,7 +1,7 @@
 ---
 id: js2
-title: Basic Syntax 
-sidebar_label: Basic Syntax 
+title: Basic Syntax
+sidebar_label: Basic Syntax
 ---
 
 - Dive into core syntax
@@ -12,16 +12,13 @@ sidebar_label: Basic Syntax
 
 ## Adding Javascript to Website
 
-**Internal** - `<script> alert("Hello World") </script>`<br/>
-**External** - `<script src="assets/scripts/app.js"></script>`
+**Internal** - `<script> alert("Hello World") </script>`<br/> **External** - `<script src="assets/scripts/app.js"></script>`
 
 ## Variables & Constants
 
-Varibale is a data container - `let userName = 'Max';`<br/>
-Where the value can change - `userName = 'Maxi';`
+Varibale is a data container - `let userName = 'Max';`<br/> Where the value can change - `userName = 'Maxi';`
 
-Constant is also a data container - `const total = 15;`<br/>
-Where value must not change - `totalUser = 20;`
+Constant is also a data container - `const total = 15;`<br/> Where value must not change - `totalUser = 20;`
 
 **Namming Convention**
 
@@ -30,8 +27,7 @@ Where value must not change - `totalUser = 20;`
 - `let $kindOfSpecial` [ Starting with $ ]
 - `let _internalValue` [ Starting with _ ]
 
-Constant - `const ATTACK_VALUE = 10;`<br/>
-Event Listner - ` onClick or clickHandler`
+Constant - `const ATTACK_VALUE = 10;`<br/> Event Listner - ` onClick or clickHandler`
 
 **Bad Practice**
 
@@ -42,24 +38,26 @@ Event Listner - ` onClick or clickHandler`
 
 ## Operators
 
-Add two number [ + ]<br/>
-Subtract two number [ - ]<br/>
-Multiply two number [ * ]<br/>
-Divide two number [ / ]<br/>
-Divide two numbers,remainders [ % ]<br/>
-Exponentiation [ ** ] [2**3 = 8]<br/>
-Assign value to variable [ = ]<br/>
-Perform calculation and reassign result to variable [ +=, -= ]<br/>
-Increment / Decrement<br/>
-variable value + re-assign [ ++,-- ]<br/>
+Add two number [ + ]<br/> Subtract two number [ - ]<br/> Multiply two number [ * ]<br/> Divide two number [ / ]<br/> Divide two numbers,remainders [ % ]<br/> Exponentiation [ ** ] [2**3 = 8]<br/> Assign value to variable [ = ]<br/> Perform calculation and reassign result to variable [ +=, -= ]<br/> Increment / Decrement<br/> variable value + re-assign [ ++,-- ]<br/>
 
 ## Data types
+
+**Primitives**
 
 - Numbers - 2,-3,22.66
 - Strings - 'Hi', "Hello", `Hello`
 - Booleans - true / false
-- Objects - { name: 'Max', age: 31 }
+- Null & Undefine
+
+**Reference**
+
+- Obj1ects - { name: 'Max', age: 31 }
 - Arrays - [1, 3, 5] ( Sepcial Object )
+- Function - function(){}
+
+:::note Data Copy<br/><br/> Primitives are copied by value<br/> References are copied by reference
+
+:::
 
 String Interpolation `(${defaultResult}+10)*3/2-1)`
 
@@ -72,7 +70,7 @@ function greetUser(name) {
   alert(`hi ${name}`);
 }
 
-greetUser("Max");
+greetUser('Max');
 ```
 
 ## Global & Local Scope
@@ -83,6 +81,7 @@ function add(num1, num2) {
   result = num1 + num2; //Success
 }
 ```
+
 ```js title="Local Scope"
 function add(num1, num2) {
   let result; //LOCAL
@@ -93,13 +92,13 @@ console.log(result); //Error
 ```
 
 ```js title="Shadowed variables"
-let userName = "Max";
+let userName = 'Max';
 function greetUser(name) {
   let userName = name;
   alert(userName);
 }
-userName = "Manu";
-greetUser("Max");
+userName = 'Manu';
+greetUser('Max');
 
 //This will actually show an alert
 //that says 'Max' (NOT 'Manu').
@@ -130,52 +129,43 @@ It indeed is not allowed on the same level/ in the same scope.
 JavaScript arrays are used to store multiple values in a single variable.
 
 ```js title="Array"
-let fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruits = ['Banana', 'Orange', 'Apple', 'Mango'];
 fruits.pop(); // Removes the last element
-fruits.push("Kiwi"); //  Adds a new element ("Kiwi") to fruits
+fruits.push('Kiwi'); //  Adds a new element ("Kiwi") to fruits
 ```
 
 ## Objects
 
 ```js title="Objects"
 var car = {
-  type: "Fiat",
-  model: "500",
-  color: "white",
+  type: 'Fiat',
+  model: '500',
+  color: 'white',
 };
 
 //ACCESSING OBJECT PROPERTIES
 objectName.propertyName;
-objectName["propertyName"];
+objectName['propertyName'];
 ```
 
 ## Null & Undefined
 
 **Undefined**
-1. Default value of
-   uninitialized variables
 
-2. You shouldn’t assign
-   undefined as a value
-   manually
+1. Default value of uninitialized variables
+
+2. You shouldn’t assign undefined as a value manually
 
 **Null**
-1. Never assumed by
-   default
-2. You can assign this is
-   a value if you want to
-   “reset” / “clear” a
-   variable
+
+1. Never assumed by default
+2. You can assign this is a value if you want to “reset” / “clear” a variable
 
 **NaN**
-1. Technically, it’s of type
-   number and can
-   therefore be used in
-   calculations
 
-2. It yields a new NaN
-   and it’s the result of
-   invalid calculations
+1. Technically, it’s of type number and can therefore be used in calculations
+
+2. It yields a new NaN and it’s the result of invalid calculations
 
 ## Typeof
 
@@ -187,11 +177,11 @@ objectName["propertyName"];
 - typeof null = object
 - typeof NaN = Number
 
-## Useful Resources & Links
+## Useful Links
 
-1. MDN => JavaScript Basics: https://developer.mozilla.org/en-US/docs/Web/JavaScript
-2. MDN => Variables: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables
-3. MDN => Operators: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Math
-4. MDN => Functions: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions
-5. MDN => Arrays: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays
-6. MDN => Objects: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics
+1. [JavaScript Basics](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+2. [Variables](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables)
+3. [Operators](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Math)
+4. [Functions](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Functions)
+5. [Arrays](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Arrays)
+6. [Objects](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics)

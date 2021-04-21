@@ -1,291 +1,332 @@
 ---
 id: React4
-title: Redux
-sidebar_label: Redux
+title: Lifecycle
+sidebar_label: Lifecycle
 ---
 
+Lifecycle of Components Each component in React has a lifecycle which you can monitor and manipulate during its three main phases.
 
-## 1. Redux - State Management 
-A predictable state container for JavaScript apps.
+The three phases are:
 
-### 1. Create Store
-``` javascript
-import { createStore } from 'redux';
-const store = createStore((state = { count: 0 }) => {
-    return state;
-});
+1. Mounting
+2. Updating
+3. Unmounting
 
-console.log(store.getState());
-```
+## Mounting
 
-### 2.Change State
-``` javascript 
-import { createStore } from 'redux';
-const store = createStore((state = { count: 0 }, action) => {
-    if (action.type === 'INCREMENT') {
-        return {
-            count: state.count + 10
-        };
-    } else {
-        console.log('RUN');
-        return state;
-    }
-});
+Mounting means putting elements into the DOM.
 
-console.log(store.getState());
-store.dispatch({
-    type: 'INCREMENT'
-});
-console.log(store.getState());
-```
+React has four built-in methods that gets called, in this order, when mounting a component:
 
-### 3.Change State using Action
-* Actions - Object that gets sent to the store way Communication with the store
-``` javascript
-import { createStore } from 'redux';
-const store = createStore((state = { count: 0 }, action) => {
-    console.log('OOOO');
-    switch (action.type) {
-        case 'INCREMENT':
-            return {
-                count: state.count + 1
-            };
-        case 'DECREMENT':
-            return {
-                count: state.count - 1
-            };
-        case 'RESET':
-            return {
-                count: 0
-            }
-        default:
-            return state;
-    }
-});
+1. constructor()
+2. getDerivedStateFromProps()
+3. render()
+4. componentDidMount()
 
-console.log(store.getState());
+The render() method is required and will always be called, the others are optional and will be called if you define them.
 
-store.dispatch({
-    type: 'INCREMENT'
-});
-store.dispatch({
-    type: 'DECREMENT'
-});
-store.dispatch({
-    type: 'RESET'
-})
+### 1.constructor
 
-console.log(store.getState());
-```
-### 4.Subscribing And Dynamic Actions
-``` javascript
-import { createStore } from 'redux';
-const store = createStore((state = { count: 0 }, action) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
-            return {
-                count: state.count + incrementBy
-            };
-        case 'DECREMENT':
-            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
-            return {
-                count: state.count - decrementBy
-            };
-        case 'SET':
-            return {
-                count: action.count
-            }
-        case 'RESET':
-            return {
-                count: 0
-            }
+The constructor() method is called before anything else, when the component is initiated, and it is the natural place to set up the initial state and other initial values.
 
-        default:
-            return state;
-    }
-});
+The constructor() method is called with the props, as arguments, and you should always start by calling the super(props) before anything else, this will initiate the parent's constructor method and allows the component to inherit methods from its parent (React.Component).
 
-const unsubscribe = store.subscribe(() => {
-    console.log("CHANGE STATE:");
-    console.log(store.getState());
-});
-
-store.dispatch({
-    type: 'INCREMENT',
-    incrementBy: 5
-});
-store.dispatch({
-    type: 'INCREMENT',
-});
-
-store.dispatch({
-    type: 'DECREMENT'
-});
-store.dispatch({
-    type: 'DECREMENT',
-    decrementBy: 5
-});
-store.dispatch({
-    type: 'RESET'
-})
-store.dispatch({
-    type: 'SET',
-    count: 1000
-})
-unsubscribe();
-```
-Example [Files.6]
-
-DESTRUCTURING
-``` javascript
-const add = ({ a, b }) => {
-    return a + b;
-}
-console.log(add({ a: 21, b: 31 }));
-```
-
-## 2.Reducers
-1. Reducers are pure function
-2. Never change state or action
-
-Reducers specify how the application's state changes in response to actions sent to the store. Remember that actions only describe what happened, but don't describe how the application's state changes.   
-
-
-### 1. Combine Reducer
-
-``` javascript
-import { createStore, combineReducers } from 'redux';
-
-//EXPENSES REDUCER
-const expensesReducerDefaultState = [];
-const expensesReducer = (state = expensesReducerDefaultState, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-}
-//FILTER REDUCER
-const filterReducerDefaultState = {
-    text: "",
-    sortBy: 'date',
-    startDate: undefined,
-    endDate: undefined
-};
-
-const filterReducer = (state = filterReducerDefaultState, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  render() {
+    return <h1>My Favorite Color is {this.state.favoritecolor}</h1>;
+  }
 }
 
-//STORE CREATION COMBINE REDUCER
-
-const store = createStore(
-    combineReducers({
-        expenses: expensesReducer,
-        filters: filterReducer
-    })
-);
-
-console.log(store.getState());
+ReactDOM.render(<Header />, document.getElementById('root'));
 ```
 
-### 2. Higher Order Component
+### 2.getDerivedStateFromProps
 
-Higher Order Component (HOC) - A component (HOC) that renders another component
+The getDerivedStateFromProps() method is called right before rendering the element(s) in the DOM.
 
-* Reuse code
-* Render hijacking
-* Prop manipulation
-* Abstract state
+This is the natural place to set the state object based on the initial props.
 
-``` javascript
-import React from 'react';
-import ReactDOM from 'react-dom';
+It takes state as an argument, and returns an object with changes to the state.
 
-// SIMPLE COMPONENT [TO BE WRAPPED INSIDE HOC]
-const Info = (props) => (
-    <div>
-        <h1>Information</h1>
-        <p>This info is : {props.info} </p>
-    </div>
-);
+The example below starts with the favorite color being "red", but the getDerivedStateFromProps() method updates the favorite color based on the favcol attribute:
 
-// HOC COMPONENT 
-const withAdminWarn = (WarppedComponent) => {
-    return (props) => (
-        <div>
-            {props.isAdmin && <h1>ADMIN PANEL : PRIVATE DATA</h1>}
-            <WarppedComponent {...props} />  //PASSING ALL THE PROPS TO CHILD COMPONENT
-        </div>
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol};
+  }
+  render() {
+    return <h1>My Favorite Color is {this.state.favoritecolor}</h1>;
+  }
+}
+
+ReactDOM.render(<Header favcol="yellow" />, document.getElementById('root'));
+```
+
+**render**<br/> The render() method is required, and is the method that actually outputs the HTML to the DOM.
+
+```js
+class Header extends React.Component {
+  render() {
+    return <h1>This is the content of the Header component</h1>;
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+```
+
+### 3.componentDidMount
+
+The componentDidMount() method is called after the component is rendered. This is where you run statements that requires that the component is already placed in the DOM.
+
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: 'yellow'});
+    }, 1000);
+  }
+  render() {
+    return <h1>My Favorite Color is {this.state.favoritecolor}</h1>;
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+```
+
+## Updating
+
+The next phase in the lifecycle is when a component is updated.
+
+A component is updated whenever there is a change in the component's state or props.
+
+React has five built-in methods that gets called, in this order, when a component is updated:
+
+1. getDerivedStateFromProps()
+2. shouldComponentUpdate()
+3. render()
+4. getSnapshotBeforeUpdate()
+5. componentDidUpdate()
+
+The render() method is required and will always be called, the others are optional and will be called if you define them.
+
+### 1.getDerivedStateFromProps
+
+Also at updates the getDerivedStateFromProps method is called. This is the first method that is called when a component gets updated.
+
+This is still the natural place to set the state object based on the initial props.
+
+The example below has a button that changes the favorite color to blue, but since the getDerivedStateFromProps() method is called, which updates the state with the color from the favcol attribute, the favorite color is still rendered as yellow:
+
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  static getDerivedStateFromProps(props, state) {
+    return {favoritecolor: props.favcol};
+  }
+  changeColor = () => {
+    this.setState({favoritecolor: 'blue'});
+  };
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+        <button type="button" onClick={this.changeColor}>
+          Change color
+        </button>
+      </div>
     );
+  }
 }
 
-// PASSING COMPONENT TO HOC AS PARAMETER
-const AdminInfo = withAdminWarn(Info);
-
-ReactDOM.render(<AdminInfo info='795001' isAdmin={false} />, document.getElementById('root'));
+ReactDOM.render(<Header favcol="yellow" />, document.getElementById('root'));
 ```
 
-## 3. React Redux 
+### 2.shouldComponentUpdate
 
-``` javascript
-import { Provider } from 'react-redux';
-const jsx = (
-    <Provider store={store}>
-        <AppRouter />
-    </Provider>
-);
-```
+In the shouldComponentUpdate() method you can return a Boolean value that specifies whether React should continue with the rendering or not.
 
-``` javascript 
-import React from 'react';
-import { connect } from 'react-redux';
+The default value is true.
 
-//SIMPLE COMPONENT THAT PASS TO HOC
-const ExpenseList = (props) => (
-    <div>
-        <h1> EXPENSE LIST :</h1>
-        <h2> {props.expenses.length}</h2>
+The example below shows what happens when the shouldComponentUpdate() method returns false:
 
-    </div>
-);
-
-// CALLING HOC FROM REDUX
-const ConnectedExpenseList = connect()(ExpenseList); 
-
-// Connecting to Redux Connect to get the connection then sending the component to HOC
-
-const ConnectedExpenseList = connect((state) => {
-    return {
-        expenses: state.expenses
-    };
-})(ExpenseList);
-
-export default ConnectedExpenseList;
-```
-
-## Common Convension
-``` javascript 
-const ExpenseList = (props) => (
-    <div>
-        <h1> EXPENSE LIST :</h1>
-        <h2> {props.expenses.length}</h2>
-
-    </div>
-);
-const mapStateToProps = (state) => {
-    return {
-        expenses: state.expenses
-    };
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  shouldComponentUpdate() {
+    return false;
+  }
+  changeColor = () => {
+    this.setState({favoritecolor: 'blue'});
+  };
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+        <button type="button" onClick={this.changeColor}>
+          Change color
+        </button>
+      </div>
+    );
+  }
 }
 
-export default connect(mapStateToProps)(ExpenseList);
+ReactDOM.render(<Header />, document.getElementById('root'));
 ```
 
+### 3.getSnapshotBeforeUpdate
 
+In the getSnapshotBeforeUpdate() method you have access to the props and state before the update, meaning that even after the update, you can check what the values were before the update.
 
+If the getSnapshotBeforeUpdate() method is present, you should also include the componentDidUpdate() method, otherwise you will get an error.
 
+The example below might seem complicated, but all it does is this:
 
+When the component is mounting it is rendered with the favorite color "red".
+
+When the component has been mounted, a timer changes the state, and after one second, the favorite color becomes "yellow".
+
+This action triggers the update phase, and since this component has a getSnapshotBeforeUpdate() method, this method is executed, and writes a message to the empty DIV1 element.
+
+Then the componentDidUpdate() method is executed and writes a message in the empty DIV2 element:
+
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: 'yellow'});
+    }, 1000);
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    document.getElementById('div1').innerHTML =
+      'Before the update, the favorite was ' + prevState.favoritecolor;
+  }
+  componentDidUpdate() {
+    document.getElementById('div2').innerHTML =
+      'The updated favorite is ' + this.state.favoritecolor;
+  }
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+        <div id="div1"></div>
+        <div id="div2"></div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+```
+
+### 4.componentDidUpdate
+
+The componentDidUpdate method is called after the component is updated in the DOM.
+
+The example below might seem complicated, but all it does is this:
+
+When the component is mounting it is rendered with the favorite color "red".
+
+When the component has been mounted, a timer changes the state, and the color becomes "yellow".
+
+This action triggers the update phase, and since this component has a componentDidUpdate method, this method is executed and writes a message in the empty DIV element:
+
+```js
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {favoritecolor: 'red'};
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({favoritecolor: 'yellow'});
+    }, 1000);
+  }
+  componentDidUpdate() {
+    document.getElementById('mydiv').innerHTML =
+      'The updated favorite is ' + this.state.favoritecolor;
+  }
+  render() {
+    return (
+      <div>
+        <h1>My Favorite Color is {this.state.favoritecolor}</h1>
+        <div id="mydiv"></div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Header />, document.getElementById('root'));
+```
+
+## Unmounting
+
+The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
+
+React has only one built-in method that gets called when a component is unmounted:
+
+1. componentWillUnmount()
+
+### 1.componentWillUnmount
+
+The componentWillUnmount method is called when the component is about to be removed from the DOM.
+
+```js
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {show: true};
+  }
+  delHeader = () => {
+    this.setState({show: false});
+  };
+  render() {
+    let myheader;
+    if (this.state.show) {
+      myheader = <Child />;
+    }
+    return (
+      <div>
+        {myheader}
+        <button type="button" onClick={this.delHeader}>
+          Delete Header
+        </button>
+      </div>
+    );
+  }
+}
+
+class Child extends React.Component {
+  componentWillUnmount() {
+    alert('The component named Header is about to be unmounted.');
+  }
+  render() {
+    return <h1>Hello World!</h1>;
+  }
+}
+
+ReactDOM.render(<Container />, document.getElementById('root'));
+```

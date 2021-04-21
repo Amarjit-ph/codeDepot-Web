@@ -1,164 +1,155 @@
 ---
 id: React3
-title: React Router
-sidebar_label: React Router
+title: Props & State
+sidebar_label: Props & State
 ---
 
+Props are used to pass data, whereas state is for managing data. Data from props is read-only, and cannot be modified by a component that is receiving it from outside. State data can be modified by its own component, but is private (cannot be accessed from outside)
 
-## 1. React Router
+## React Props
 
-``` javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from 'react-router-dom';
+Props are arguments passed into React components. Props are passed to components via HTML attributes.
 
-import 'normalize.css';
-import './Styles/styles.scss';
+React Props are like function arguments in JavaScript and attributes in HTML.
 
-const ExpenseDashboardPage = () => (
-    <div>
-        This is my ExpenseDashboardPage
-    </div>
-);
-const AddExpensePage = () => (
-    <div>
-        This is create Expense Page
-    </div>
-);
+To send props into a component, use the same syntax as HTML attributes:
 
-const routes = (
-    <BrowserRouter>
-        <div>
-            <Route path='/' component={ExpenseDashboardPage} exact={true} />
-            <Route path='/create' component={AddExpensePage} />
-        </div>
-    </BrowserRouter>
-
-);
-
-//COMPONENTS
-ReactDOM.render(routes, document.getElementById("root"));
+```js
+const myelement = <Car brand="Ford" />;
 ```
 
-## 2. Setting 404 with Switch 
-Switch is Used to render only the match route
+The component receives the argument as a props object,<br/> Use the brand attribute in the component:
 
-``` javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import 'normalize.css';
-import './Styles/styles.scss';
-
-const ExpenseDashboardPage = () => (
-    <div>
-        This is my ExpenseDashboardPage
-    </div>
-);
-const AddExpensePage = () => (
-    <div>
-        This is create Expense Page
-    </div>
-);
-
-const EditExpensePage = () => (
-    <div>
-        This is Edit Expense Page
-    </div>
-);
-const HelpPage = () => (
-    <div>
-        This is Help Page
-    </div>
-);
-
-const NotFoundPage = () => (
-    <div>
-        404
-    </div>
-);
-
-const routes = (
-    <BrowserRouter>
-        <Switch>
-            <Route path='/' component={ExpenseDashboardPage} exact={true} />
-            <Route path='/create' component={AddExpensePage} />
-            <Route path='/edit' component={EditExpensePage} />
-            <Route path='/help' component={HelpPage} />
-            <Route component={NotFoundPage} />
-        </Switch>
-    </BrowserRouter>
-
-);
-
-//COMPONENTS
-ReactDOM.render(routes, document.getElementById("root"));
+```js
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
 ```
 
-## 3. Linking Between Routes
+## Pass Data
 
-``` javascript
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom';
+Props are also how you pass data from one component to another, as parameters.
 
-import 'normalize.css';
-import './Styles/styles.scss';
+```js
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.brand}!</h2>;
+  }
+}
 
+class Garage extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Who lives in my garage?</h1>
+        <Car brand="Ford" />
+      </div>
+    );
+  }
+}
 
-const ExpenseDashboardPage = () => (
-    <div>
-        This is my ExpenseDashboardPage
-    </div>
-);
-const AddExpensePage = () => (
-    <div>
-        This is create Expense Page
-    </div>
-);
+ReactDOM.render(<Garage />, document.getElementById('root'));
+```
 
-const EditExpensePage = () => (
-    <div>
-        This is Edit Expense Page
-    </div>
-);
-const HelpPage = () => (
-    <div>
-        This is Help Page
-    </div>
-);
+## Props in the Constructor
 
-const NotFoundPage = () => (
-    <div>
-        404 - <Link to='/'>GO HOME</Link>
-    </div>
-);
-const Header = () => (
-    <header>
-        <h1>Expensify</h1>
-        <NavLink to='/' exact={true} activeClassName='is-active'>Dashboard</NavLink>
-        <NavLink to='/create' activeClassName='is-active'>Create Expense</NavLink>
-        <NavLink to='/edit' activeClassName='is-active'>Edit Expense</NavLink>
-        <NavLink to='/help' activeClassName='is-active'>Help</NavLink>
-    </header>
-);
+If your component has a constructor function, the props should always be passed to the constructor and also to the React.Component via the super() method.
 
-const routes = (
-    <BrowserRouter>
-        <div>
-            <Header />
-            <Switch>
-                <Route path='/' component={ExpenseDashboardPage} exact={true} />
-                <Route path='/create' component={AddExpensePage} />
-                <Route path='/edit' component={EditExpensePage} />
-                <Route path='/help' component={HelpPage} />
-                <Route component={NotFoundPage} />
-            </Switch>
-        </div>
-    </BrowserRouter >
+```js
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <h2>I am a {this.props.model}!</h2>;
+  }
+}
 
-);
-//COMPONENTS
-ReactDOM.render(routes, document.getElementById("root"));
+ReactDOM.render(<Car model="Mustang" />, document.getElementById('root'));
+```
+
+## React State
+
+React components has a built-in state object. The state object is where you store property values that belongs to the component. When the state object changes, the component re-renders.
+
+## Creating State Object
+
+```js title="Creating State Object"
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {brand: 'Ford'};
+  }
+  render() {
+    return (
+      <div>
+        <h1>My Car</h1>
+      </div>
+    );
+  }
+}
+```
+
+## Using State Object
+
+```js title="Using State Object"
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: 'Ford',
+      model: 'Mustang',
+      color: 'red',
+      year: 1964,
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+      </div>
+    );
+  }
+}
+```
+
+## Changing State
+
+```js title="Changing State"
+class Car extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      brand: 'Ford',
+      model: 'Mustang',
+      color: 'red',
+      year: 1964,
+    };
+  }
+  changeColor = () => {
+    this.setState({color: 'blue'});
+  };
+  render() {
+    return (
+      <div>
+        <h1>My {this.state.brand}</h1>
+        <p>
+          It is a {this.state.color}
+          {this.state.model}
+          from {this.state.year}.
+        </p>
+        <button type="button" onClick={this.changeColor}>
+          Change color
+        </button>
+      </div>
+    );
+  }
+}
 ```

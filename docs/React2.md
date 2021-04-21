@@ -1,222 +1,177 @@
 ---
 id: React2
-title: State & Life Cycle
-sidebar_label: State & Life Cycle
+title: Components
+sidebar_label: Components
 ---
- The state object is where you store property values that belongs to the component. When the state object changes, the component re-renders.
 
-State Re Render UI When the Data is change
+Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML via a render() function.
 
-## 1. React State
-* This.setState
-* This.state = { Count: 0 }
+- Reusable
+- Individual piece of User Interface
+- Custom Html Element [React Component]
 
-``` javascript 
-class Counter extends React.Component {
-    constructor(props) {
-        super(props);
-        this.addOne = this.addOne.bind(this);
-        this.minusOne = this.minusOne.bind(this);
-        this.resetAll = this.resetAll.bind(this);
-        this.state = {
-            count: 0
-        };
-    }
+Components come in two types,
 
-    addOne() {
-        this.setState((prevState) => {
-            return {
-                count: prevState.count + 1
-            }
-        });
-    }
-    minusOne() {
-        this.setState((prevState) => {
-            return {
-                count: prevState.count - 1
-            }
-        });
-    }
-    resetAll() {
-        this.setState((prevState) => {
-            return {
-                count: 0
-            }
-        });
-    }
+1. Class components
+2. Function components
 
-    render() {
-        return (
-            <div>
-                <h1>COUNT :{this.state.count} </h1>
-                <button onClick={this.addOne}>+1</button>
-                <button onClick={this.minusOne}>-1</button>
-                <button onClick={this.resetAll}>Reset</button>
-            </div>
-        );
-    }
-}
+**Rules:**
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
-```
+- Uppercase First Letter is Important is React Components
+- Differentiate Between Html and Components
+- Must define Render function
 
+```js title="Component Example"
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-
-## 2. Method Binding
-### 1. Working Binding
-``` javascript
-// WORKING THIS BINDING
-const obj = {
-  name: "AMARJIT",
-  getName() {
-    return this.name;
-  }
-};
-console.log(obj.getName());
-//OUTPUT : AMARJIT 
-```
-### 2. Brokent Binding
-```javascript
-//BROKEN THIS BINDING
-const obj = {
-  name: "AMARJIT",
-  getName() {
-    return this.name;
-  }
-};
-const getName = obj.getName;
-console.log(getName()); //BROKEN THIS BINDING
-```
-### 3. Solve Binding
-``` javascript
-//SOLVE WITH BIND
-const getName = obj.getName.bind(obj); //BIND FORM OBJECT [obj]^
-console.log(getName());
-
-//BIND FORM PARAMETER
-const getName = obj.getName.bind({ name: "Andrew" });
-console.log(getName());
-```
-
-### Example
-``` javascript 
-class Options extends React.Component {
-  removeAll() {
-    alert(this.props.options); // BROKEN THIS BIND
-  }
+class Header extends React.Component {
   render() {
-    return (
-      <div>
-        {this.props.options.map(option => (
-          <Option key={option} optionText={option} />
-        ))}
-        <button onClick={this.removeAll.bind}>RESET</button>
-      </div>
-    );
+    return <p> This is from Header</p>;
   }
 }
-```
-
-### Fixed This Bind
-``<button onClick={this.removeAll.bind(this)}>RESET</button>``
-
-### Final Fixed for this Binding
-CALL CONSTRUCTOR SUPER PROPS THEN BIND IN THE FUNCTION
-``` javascript
-class Options extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-  }
-  handleRemoveAll() {
-    alert(this.props.options);
-  }
-  render() {
-    return (
-      <div>
-        {this.props.options.map(option => (
-          <Option key={option} optionText={option} />
-        ))}
-        <button onClick={this.handleRemoveAll}>RESET</button>
-      </div>
-    );
-  }
-}
-```
-:::tip
-## PROPS 
-#### TOP DOWN DATA STREAM 
-Which passes form parent class to the child component class 
-Through props
-:::
-:::tip
-## FUNCTIONAL PROPS
-#### BOTTON UP STREAM
-Method call from child via props communicate with parents
-:::
-
-## 3. Life Cycle Methods
-
-* Fire at Start
-``` javascript
-  componentDidMount() {
-    console.log('MOUNTED');
-  }
-```
-
-* Fire when something change
-``` javascript
-componentDidUpdate() {
-    console.log('UPDATED');
-  }
-```
-* Fire when Component is Close
-``` javascript 
-componentWillUnmount() {
-    console.log('UNMOUNTED');
-  }
-```
-
-## 4. Saving and Loading Data
-Using localStorage [Files.5]
-## 5. Passing Children to Component
-
-### 1. Passing Template component as Childern to layout component 
-``` javascript 
-const Layout = (props) => {
-    return (
-        <div>
-            <h1>1</h1>
-            {props.content}
-            <h1>3</h1>
-        </div>
-    )
-}
-```
-``` javascript
-const template = (
-    <div>
-        <h1>2</h1>
-    </div>
+const jsx = (
+  <div>
+    <Header />
+  </div>
 );
 
-ReactDOM.render(<Layout content={template} />, document.getElementById('root'));
+ReactDOM.render(jsx, document.getElementById('root'));
 ```
-### 2. Another method of passing
 
-``` javascript
-const Layout = (props) => {
-    return (
-        <div>  
-            <h1>1</h1>
-            {props.children}
-            <h1>3</h1>
-        </div>
-    )
+## Class Component
+
+When creating a React component, the component's name must start with an upper case letter.
+
+The component has to include the extends React.Component statement, this statement creates an inheritance to React.Component, and gives your component access to React.Component's functions.
+
+The component also requires a render() method, this method returns HTML.
+
+```js
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
 }
-ReactDOM.render(<Layout>
+```
+
+Display the Car component in the "root" element:
+
+```js
+ReactDOM.render(<Car />, document.getElementById('root'));
+```
+
+## Functional Component
+
+Here is the same example as above, but created using a Function component instead.
+
+A Function component also returns HTML, and behaves pretty much the same way as a Class component, but Class components have some additions, and will be preferred in this tutorial.
+
+```js
+function Car() {
+  return <h2>Hi, I am also a Car!</h2>;
+}
+```
+
+Display the Car component in the "root" element:
+
+```js
+ReactDOM.render(<Car />, document.getElementById('root'));
+```
+
+## Component Constructor
+
+If there is a constructor() function in your component, this function will be called when the component gets initiated. The constructor function is where you initiate the component's properties. In React, component properties should be kept in an object called state.
+
+```js
+class Car extends React.Component {
+  constructor() {
+    super();
+    this.state = {color: 'red'};
+  }
+  render() {
+    return <h2>I am a Car!</h2>;
+  }
+}
+```
+
+## Nesting Components
+
+We can refer to components inside other components:
+
+```js
+class Car extends React.Component {
+  render() {
+    return <h2>I am a Car!</h2>;
+  }
+}
+
+class Garage extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Who lives in my Garage?</h1>
+        <Car />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<Garage />, document.getElementById('root'));
+```
+
+## Components in Files
+
+React is all about re-using code, and it can be smart to insert some of your components in separate files.
+
+To do that, create a new file with a .js file extension and put the code inside it:
+
+Note that the file must start by importing React (as before), and it has to end with the statement export default Car;
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Car extends React.Component {
+  render() {
+    return <h2>Hi, I am a Car!</h2>;
+  }
+}
+
+export default Car;
+```
+
+## Component Props
+
+Another way of handling component properties is by using props. Props are like function arguments, and you send them into the component as attributes.
+
+React Props are like function arguments in JavaScript and attributes in HTML.
+
+```js
+class Car extends React.Component {
+  render() {
+    return <h2>I am a {this.props.color} Car!</h2>;
+  }
+}
+
+ReactDOM.render(<Car color="red" />, document.getElementById('root'));
+```
+
+## Default Props Values
+
+Allow to past data through props and create default Props
+
+```javascript
+const Header = (props) => {
+  return (
     <div>
-        <h1>2</h1>
+      <h1>{props.title}</h1>
+      {props.subtitle && <h2>{props.subtitle}</h2>}
     </div>
-</Layout>, document.getElementById('root'));
+  );
+};
+
+Header.defaultProps = {
+  title: 'Indecision',
+};
 ```

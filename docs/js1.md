@@ -1,21 +1,16 @@
 ---
 id: js1
-title: Javascript 
+title: Javascript
 sidebar_label: Introduction
 ---
 
 ## Introduction
 
-JavaScript is a dynamic, weakly typed programming language,
-Which is compiled at runtime, It can be executed as a part of webpage
-in a browser or directly on any machine.
+JavaScript is a dynamic, weakly typed programming language, Which is compiled at runtime, It can be executed as a part of webpage in a browser or directly on any machine.
 
-Created at 1995 by Brendan Eich
-While he was an engineer at Netscape.
+Created at 1995 by Brendan Eich While he was an engineer at Netscape.
 
-Created to make webpages more dynamic
-originally called LiveScript but due to popularity of Java
-It is called JavaScript.
+Created to make webpages more dynamic originally called LiveScript but due to popularity of Java It is called JavaScript.
 
 - Dynamic weakly typed programming language
 - Interpreted on the fly
@@ -24,19 +19,14 @@ It is called JavaScript.
 
 ## Dynamic & weakly typed
 
-Not pre-compiled instead parsed and Compile Fast (In browser),
-Code evaluated and executed in runtime,
-Code can change at runtime.
+Not pre-compiled instead parsed and Compile Fast (In browser), Code evaluated and executed in runtime, Code can change at runtime.
 
-Data types are assumed automatically,
-You don't define that some variable has to hold a certain value, Data types can change.
+Data types are assumed automatically, You don't define that some variable has to hold a certain value, Data types can change.
 
 ## JavaScript Execution
 
-1. Javascript Execution
-  `Your code > JavaScript engine > Effect on webpage`
-2. JavaScript engine
-  `Parse Code > Compile to machine code > Execute Machine Code [ Single Thread ]`
+1. Javascript Execution `Your code > JavaScript engine > Effect on webpage`
+2. JavaScript engine `Parse Code > Compile to machine code > Execute Machine Code [ Single Thread ]`
 
 - V8 (chrome)
 - SpiderMonkey (Firefox)
@@ -67,13 +57,13 @@ Javascript - The most famous ECMAScript implementation
 (other Example "ActionScript" or "Jscript")
 
 ECMA - Late 1996
-ES 1 - 1997
-ES 2 - 1998
-ES 3 - 1999
-ES 4 - Not Release
-ES 5 - 2009
-ES 6 - 2015
-ES 7 - 2016
-ES 8 - 2017
-ES 9 - 2019
+ES1 1997
+ES2 1998
+ES3 1999
+ES4 Abandoned
+ES5 2009
+ES6 2015
+ES7 2016
+ES8 2017
+ES9 2018
 ```

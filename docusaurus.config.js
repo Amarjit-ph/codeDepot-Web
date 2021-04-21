@@ -9,7 +9,7 @@
 
 module.exports = {
   title: 'Code Depot',
-  tagline: 'Personal code storage space for improving coding experience.',
+  tagline: 'Personal code storage space & references for improving coding experience.',
   url: 'https://codeDepot.netlify.com',
   baseUrl: '/',
   favicon: 'img/Code-Depot-Fill.png',

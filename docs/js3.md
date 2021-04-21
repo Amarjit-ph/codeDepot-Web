@@ -1,7 +1,7 @@
 ---
 id: js3
 title: Control Structures
-sidebar_label: Control Structures 
+sidebar_label: Control Structures
 ---
 
 - Conditional Statements
@@ -35,10 +35,10 @@ sidebar_label: Control Structures
 ```js title="If"
 const enteredNumber = getUserNumberInput();
 if (
-  (calculationType !== "ADD" &&
-    calculationType !== "SUBTRACT" &&
-    calculationType !== "MULTIPLY" &&
-    calculationType !== "DIVIDE") ||
+  (calculationType !== 'ADD' &&
+    calculationType !== 'SUBTRACT' &&
+    calculationType !== 'MULTIPLY' &&
+    calculationType !== 'DIVIDE') ||
   !enteredNumber
 ) {
   return;
@@ -46,27 +46,28 @@ if (
 ```
 
 ```js title="If Else"
-if (calculation == "ADD") {
-  console.log("+");
+if (calculation == 'ADD') {
+  console.log('+');
 } else {
-  console.log("Not Add");
+  console.log('Not Add');
 }
 ```
+
 ```js title="Else If"
 const initialResult = currentResult;
 let mathOperator;
-if (calculationType === "ADD") {
+if (calculationType === 'ADD') {
   currentResult += enteredNumber;
-  mathOperator = "+";
-} else if (calculationType === "SUBTRACT") {
+  mathOperator = '+';
+} else if (calculationType === 'SUBTRACT') {
   currentResult -= enteredNumber;
-  mathOperator = "-";
-} else if (calculationType === "MULTIPLY") {
+  mathOperator = '-';
+} else if (calculationType === 'MULTIPLY') {
   currentResult *= enteredNumber;
-  mathOperator = "*";
-} else if (calculationType === "DIVIDE") {
+  mathOperator = '*';
+} else if (calculationType === 'DIVIDE') {
   currentResult /= enteredNumber;
-  mathOperator = "/";
+  mathOperator = '/';
 }
 ```
 
@@ -74,14 +75,15 @@ if (calculationType === "ADD") {
 
 ```js title="And"
 if (
-  calculationtype !== "ADD" &&
-  calculationtype !== "SUBTRACT" &&
-  calculationtype !== "DIVIDE" &&
-  calculationtype !== "MULTIPLY"
+  calculationtype !== 'ADD' &&
+  calculationtype !== 'SUBTRACT' &&
+  calculationtype !== 'DIVIDE' &&
+  calculationtype !== 'MULTIPLY'
 ) {
   return;
 }
 ```
+
 ```js title="Or"
 if(
     calculationtype == 'ADD' ||
@@ -115,12 +117,7 @@ console.log((a = b = 5));
 
 ## "Truthy" & "Falsy" Values
 
-**0** -> `false`<br/>
-**Any other number (incl. negative numbers)** -> `true`<br/>
-**””** (empty string) -> `false`<br/>
-**ny other non-empty string (incl. “false”)** -> `true`<br/>
-**{}, [] & all other objects or arrays** -> `true`<br/>
-**null, undefined, NaN** -> `false`<br/>
+**0** -> `false`<br/> **Any other number (incl. negative numbers)** -> `true`<br/> **””** (empty string) -> `false`<br/> **ny other non-empty string (incl. “false”)** -> `true`<br/> **{}, [] & all other objects or arrays** -> `true`<br/> **null, undefined, NaN** -> `false`<br/>
 
 ```js title="Conventional"
 const nameInput = ‘Max’;
@@ -170,11 +167,9 @@ return null;
 
 :::note Remember
 
-**Statement** - one instruction<br/>
-**Expression** - Return a value
+**Statement** - one instruction<br/> **Expression** - Return a value
 
 :::
-
 
 ## Switch Statement
 
@@ -183,25 +178,25 @@ Use the switch statement to select one of many code blocks to be executed.
 ```js title="Switch"
 switch (new Date().getDay()) {
   case 0:
-    day = "Sunday";
+    day = 'Sunday';
     break;
   case 1:
-    day = "Monday";
+    day = 'Monday';
     break;
   case 2:
-    day = "Tuesday";
+    day = 'Tuesday';
     break;
   case 3:
-    day = "Wednesday";
+    day = 'Wednesday';
     break;
   case 4:
-    day = "Thursday";
+    day = 'Thursday';
     break;
   case 5:
-    day = "Friday";
+    day = 'Friday';
     break;
   case 6:
-    day = "Saturday";
+    day = 'Saturday';
 }
 ```
 
@@ -249,13 +244,15 @@ while (isLoggedIn) {
 …
 }
 ```
+
 **Do while loop**
 
 Execute code as long as a condition is true
+
 ```js title="Do while"
 //DO WHILE
 do {
-  console.log("++");
+  console.log('++');
 } while (j < 10);
 ```
 
@@ -269,7 +266,7 @@ for (i = 0; i < 10; i++) {
   if (i === 3) {
     break;
   }
-  console.log("The number is " + i + "\n");
+  console.log('The number is ' + i + '\n');
 }
 ```
 
@@ -280,19 +277,16 @@ for (i = 0; i < 10; i++) {
   if (i === 3) {
     continue;
   }
-  console.log("The number is " + i + "\n");
+  console.log('The number is ' + i + '\n');
 }
 ```
 
 ## Error Handling
 
-Some errors can‘t be avoided (beyond your control
-as a developer)
+Some errors can‘t be avoided (beyond your control as a developer)
 
-- User Input Errors
-  `e.g. user enters text like ‘hi’ instead of a number`
-- Network Errors
-  `e.g. server is offline`
+- User Input Errors `e.g. user enters text like ‘hi’ instead of a number`
+- Network Errors `e.g. server is offline`
 
 Throw and catch errors to fail gracefully or recover if possible
 
@@ -313,19 +307,19 @@ try {
 ```js title="Throw"
 //THROW
 try {
-  if (x == "") throw "empty";
-  if (isNaN(x)) throw "not a number";
+  if (x == '') throw 'empty';
+  if (isNaN(x)) throw 'not a number';
   x = Number(x);
 
-  if (x < 5) throw "too low";
-  if (x > 10) throw "too high";
+  if (x < 5) throw 'too low';
+  if (x > 10) throw 'too high';
 } catch (err) {
-  message.innerHTML = "Input is " + err;
+  message.innerHTML = 'Input is ' + err;
 }
 ```
 
 ```js title="Finally"
-//FINALLY 
+//FINALLY
 try {
   Block of code to try
 }
@@ -337,7 +331,7 @@ finally {
 }
 ```
 
-## Useful Sites 
+## Useful Links
 
-1. Control Structures (MDN): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
-2. JavaScript Loops (MDN): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+1. [Control Structures (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+2. [JavaScript Loops (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)

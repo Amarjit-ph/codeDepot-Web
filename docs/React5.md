@@ -1,552 +1,116 @@
 ---
 id: React5
-title: Firebase & Redux
-sidebar_label: Firebase & Redux
+title: Lists
+sidebar_label: Lists and Keys
 ---
 
-## 1. Firebase
-The Firebase Realtime Database is a cloud-hosted database. ... When you build cross-platform apps with our iOS, Android, and JavaScript SDKs, all of your clients share one Realtime Database instance and automatically receive updates with the newest data.
+Lists are very useful when it comes to developing the UI of any website. Lists are mainly used for displaying menus in a website
 
-### 1. Configure Firebase
-``` javascript
-import * as firebase from 'firebase';
+In regular JavaScript, we can use arrays for creating lists. We can create lists in React in a similar manner as we do in regular JavaScript. We will see how to do this in detail further in this article. Let’s first see how we can traverse and update any list in regular JavaScript. We can use the **map()** function in JavaScript for traversing the lists.
 
-const firebaseConfig = {
-  /*
-    COPY ALL THE CREDENTIALS 
-    FROM CONSOLE
-  */
-};
-```
-``` javascript
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
-```
+```js title="List"cl,ear
+const numbers = [1, 2, 3, 4, 5];
 
-### 2. Create Data
-``` javascript
-database.ref().set({
-    name: 'Amarjit Pheiroijam',
-    age: 26,
-    isSingle: true,
-    location: {
-        city: "Chandigarh",
-        country: 'India'
-    },
-    attributes: {
-        hight: 5.9,
-        weight: 80
-    }
+const updatedNums = numbers.map((number) => {
+  return <li>{number}</li>;
 });
-```
-### 3. Replace All data
-``` javascript
-//REPLACE ALL DATA
-database.ref().set("this is my data");
-```
-``` javascript
-//REPLACE ALL DATA
-database.ref().set({
-     age: 100
-});
-```
-### 4. Replace specific Data
-``` javascript
-//REPLACE SPECIFIC DATA
-database.ref('age').set(100);
+
+ReactDOM.render(<ul>{updatedNums}</ul>, document.getElementById('root'));
 ```
 
-### 5. Update Data
-``` javascript
-//UPDATE SPECIFIC DATA
-database.ref('name').set('Pheiroijam Amarjit');
-```
-``` javascript
-//UPDATE DATA TO SPECIFIC PART
-database.ref('location/city').set('New York');
-```
-UPDATE WITH PROMISE
+## Rendering lists inside Components
 
-``` javascript
-//UPDATE WITH PROMISE
-database.ref('location/city').set('Imphal')
-    .then(() => {
-        console.log('DATA: SAVED');
-    })
-    .catch((e) => {
-        console.log("DATABSE ERROR : EXPENSIFY \n\n", e);
-    });
-```
-``` javascript
-//UPDATE MULTI WITH SPECIFIC PART
-database.ref().update({
-    job: 'Manager',
-    'location/city': 'Boston'
-});
-```
+In the above code in React, we had directly rendered the list to the DOM. But usually this not a good practice to render lists in React. We already have talked about the uses of Components and had seen that everything in React is built as individual components.
 
+```js title="List Inside Component"
+function Navmenu(props) {
+  const list = props.menuitems;
 
-### 6. Remove Data
-``` javascript
-//REMOVE ALL DATA
-database.ref().remove()
-    .then(() => {
-        console.log(' DATA : WIPED COMPLETED');
-    });
-```
-``` javascript 
-//REMOVE SPECIFIC DATA
-database.ref('isSingle').set(null)
-    .then(() => {
-        console.log(' DATA : REMOVE COMPLETED');
-    });
-```
-``` javascript
-//REMOVE SPECIFIC DATA PART
-database.ref('location/city').set(null)
-```
+  const updatedList = list.map((listItems) => {
+    return <li>{listItems}</li>;
+  });
 
-### 7. Fetch Data
-``` javascript
-//FETCH ALL DATA
-database.ref()
-    .once('value')
-    .then((snapshot) => {
-        const val = snapshot.val();
-        console.log(val);
-    })
-    .catch((e) => {
-        console.log("Error :", e);
-    });
-```
-``` javascript 
-//FETCH SPECFIC DATA
-database.ref(location/city)
-    .once('value')
-    .then((snapshot) => {
-        const val = snapshot.val();
-        console.log(val);
-    })
-    .catch((e) => {
-        console.log("Error :", e);
-    });
-```
-
-
-### 8. Subscriptions
-
-``` javascript
-//SUBSCRIBE
-database.ref().on('value', (snapshot) => {
-    console.log(snapshot.val());
-});
-```
-``` javascript
-//UNSUBSCRIBE
-database.ref().off()
-```
-```javascript 
-//UNSUBSCRIBE
-const onValueChange = (snapshot) => {
-    console.log(snapshot.val());
-}
-database.ref().on('value', onValueChange);
-
-setTimeout(() => {
-    database.ref('age').set(20)
-}, 3000);
-setTimeout(() => {
-    database.ref('age').set(30)
-}, 5000);
-
-setTimeout(() => {
-    database.ref().off(onValueChange)
-}, 6000);
-
-setTimeout(() => {
-    database.ref('age').set(50)
-}, 7000);
-```
-
-EXAMPLE :
-``` javascript
-//SUBSCRIBE EXAMPLE
-database.ref().on('value', (snapshot) => {
-    console.log(`${snapshot.val().name} is a ${snapshot.val().job}`)
-});
-```
-
-### 9. Array in Firebase
-
-* ADD TO ARRAY TYPE USING PUSH
-* UNIQUE ID S CREATED AS INDEX
-
-``` javascript
-var note = {
-    description: "",
-    note: "",
-    amount: '1500',
-    createdAt: '97533555'
+  return <ul>{updatedList}</ul>;
 }
 
-OR
+const menuItems = [1, 2, 3, 4, 5];
 
-Database.ref().push({
-    description: "",
-    note: "",
-    amount: '1500',
-    createdAt: '97533555'
-});
-
-Database.ref().push(note);
-```
-``` javascript
-//UPDATE ARRAY
-database.ref('Notes/-LyyvvbgL0Zl_8QvgnpM').update({
-    amount:9999
-});
+ReactDOM.render(
+  <Navmenu menuitems={menuItems} />,
+  document.getElementById('root'),
+);
 ```
 
-``` javascript
-//FIREBASE TO JS ARRAY
-database.ref('expense').once('value')
-    .then((snapshot) => {
-        const expenses = [];
-        snapshot.forEach((childSnapshot) => {
-            expenses.push({
-                id: childSnapshot.key,
-                ...childSnapshot.val()
-            });
-        });
-        console.log('\n\n\n\n', expenses);
-    });
-```
-## 2. Subscription Functions
+## Ideal Way to render a list
 
-### 1. Child Remove
-```
-database.ref('expense').on('child_removed', (snapshot) => {
-    console.log('REMOVED :', snapshot.val());
-});
-```
-### 2. Child Change
-```
-database.ref('expense').on('child_changed', (snapshot) => {
-    console.log('CHANGED :', snapshot.val());
-});
-```
-
-### 3. Child Added
-```
-database.ref('expense').on('child_added', (snapshot) => {
-    console.log('CHANGED :', snapshot.val());
-});
-```
-
-
-## 2. Redux & Firebase
-
-* Redux-thunk
-### 1. Add thunk Middleware
-``` javascript
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import expensesReducer from '../reducers/expenses';
-import filterReducer from '../reducers/filters';
-import thunk from 'redux-thunk';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-export default () => {
-    const store = createStore(
-        combineReducers({
-            expenses: expensesReducer,
-            filters: filterReducer
-        }),
-        composeEnhancers(applyMiddleware(thunk))
-        //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    );
-    return store;
-};
-```
-
-### 2. Dispatch using Firebase
-``` javascript
-import database from '../firebase/firebase';
-export const addExpense = (expense) => ({
-    type: 'ADD_EXPENSE',
-    expense
-});
-
-export const startAddExpense = (expenseData) => {
-    return (dispatch) => {
-        const {
-            description = '',
-            amount = 0,
-            note = '',
-            createdAt = 0
-        } = expenseData;
-
-        const expense = { description, note, amount, createdAt };
-        database.ref('expenses').push(expense)
-            .then((ref) => {
-                dispatch(addExpense({
-                    id: ref.key,
-                    ...expense
-                }));
-
-            });
-    };
-};
-```
-
-### 3. Firebase Authentication
-``` javascript
-const database = firebase.database();
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-export { firebase, googleAuthProvider, database as default }
-```
-
-1. LOGIN :
-``` ACTION```
-``` javascript
-import { firebase, googleAuthProvider } from '../firebase/firebase';
-export const startLogin = () => {
-    return () => {
-        return firebase.auth().signInWithPopup(googleAuthProvider);
-    };
-};
-```
-``` LOGIN-PAGE```
-``` javascript
-//LOGIN PAGE
-import React from 'react';
-import { connect } from 'react-redux';
-import { startLogin } from '../actions/auth';
-
-export const LoginPage = ({ startLogin }) => (
+```js title="The Ideal Way to Render a List"
+function IdiomaticReactList(props) {
+  return (
     <div>
-        <button
-            onClick={startLogin}>
-            Login</button>
+      {props.items.map((item, index) => (
+        <Item key={index} item={item} />
+      ))}
     </div>
-);
-
-const mapDispatchToProps = (dispatch) => ({
-    startLogin: () => dispatch(startLogin())
-});
-
-export default connect(undefined, mapDispatchToProps)(LoginPage);
-```
-
-``INDEX``
-``` javascript
-import { firebase } from './firebase/firebase';
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        console.log('LOGIN ');
-    } else {
-        console.log("LOG OUT");
-    }
-});
-```
-
-``LOGOUT``
-``` javascript
-import { startLogout } from '../actions/auth';
-export const Header = ({ startLogout }) => (
-    <header>
-        <button onClick={startLogout}>Logout</button>
-    </header>
-);
-
-const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
-});
-
-export default connect(undefined, mapDispatchToProps)(Header);
-```
-
-`HISTORY` 
-
-```Npm install history --save```
-``` javascript
-import createHistory from 'history/createBrowserHistory';
-export const history = createHistory();
-
-const AppRouter = () => (
-    <Router history={history}>
-        <div>
-            <Header />
-            <Switch>
-                <Route path='/' component={LoginPage} exact={true} />
-            </Switch>
-        </div>
-    </Router >
-);
-```
-
-``INDEX``
-``` javascript
-import AppRouter,{ history } from './routers/AppRouter';
-
-let hasRendered = false;
-const renderApp = () => {
-    if (!hasRendered) {
-        ReactDOM.render(jsx, document.getElementById("root"));
-        hasRendered = true;
-    }
+  );
 }
 ```
 
-``FIREBASE``
-``` javascript
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        console.log('SESSION : LOGIN');
-        console.log('USER ID:', user.uid);
+## Key
 
-        store.dispatch(startSetExpense())
-            .then(() => {
-                renderApp();
-                //ReactDOM.render(jsx, document.getElementById("root"));
+A “key” is a special string attribute you need to include when creating lists of elements in React. Keys are used to React to identify which items in the list are changed, updated, or deleted. In other words, we can say that keys are used to give an identity to the elements in the lists.
 
-                //REDIRECT TO DASHBOARD IF LOGIN
-                if (history.location.pathname === '/') {
-                    history.push('/dashboard');
-                }
-            });
-    } else {
-        console.log('SESSION : LOGOUT');
-        renderApp();
-        //ReactDOM.render(jsx, document.getElementById("root"));
-        history.push('/');
-    }
-});
+- Keys Must Only Be Unique Among Siblings
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => (
+  <li key={number.toString()}>{number}</li>
+));
 ```
 
+## Correct Key Usage
 
+Keys only make sense in the context of the surrounding array.
 
+For example, if you extract a ListItem component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the ListItem itself.
 
-## 3. Reducer Authentication
-
-AUTHENTICATION REDUCER
-``` javascript
-//AUTH REDURCER
-export default (state = {}, action) => {
-    switch (action.type) {
-        case 'LOGIN':
-            return {
-                uid: action.uid
-            };
-        case 'LOGOUT':
-            return {};
-        default:
-            return state;
-    }
-
+```js
+function ListItem(props) {
+  // Correct! There is no need to specify the key here:
+  return <li>{props.value}</li>;
 }
-```
 
-STORE REDUCER
-``` javascript 
-//STORE REDUCER 
-export default () => {
-    const store = createStore(
-        combineReducers({
-            expenses: expensesReducer,
-            filters: filterReducer,
-            auth: authReducer
-        }),
-        composeEnhancers(applyMiddleware(thunk))
-        //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    );
-    return store;
-};
-```
-INDEX
-``` javascript 
-//INDEX
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        console.log('SESSION : LOGIN');
-        console.log('USER ID:', user.uid);
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) => (
+    // Correct! Key should be specified inside the array.
+    <ListItem key={number.toString()} value={number} />
+  ));
+  return <ul>{listItems}</ul>;
+}
 
-        //STORE THE UID IN REDUCER
-        store.dispatch(login(user.uid));
-
-        store.dispatch(startSetExpense())
-            .then(() => {
-                renderApp();
-                //ReactDOM.render(jsx, document.getElementById("root"));
-
-                //REDIRECT TO DASHBOARD IF LOGIN
-                if (history.location.pathname === '/') {
-                    history.push('/dashboard');
-                }
-            });
-    } else {
-        console.log('SESSION : LOGOUT');
-        store.dispatch(logout());
-        renderApp();
-        //ReactDOM.render(jsx, document.getElementById("root"));
-        history.push('/');
-    }
-});
-```
-
-## 4. Private Route
-
-ROUTER
-``` javascript
-//ROUTER
-import PrivateRoute from './PrivateRoute';
-const AppRouter = () => (
-    <Router history={history}>
-        <div>
-            <Switch>
-                <Route path='/' component={LoginPage} exact={true} />
-                <PrivateRoute path='/dashboard' component={ExpenseDashboardPage} />
-                <PrivateRoute path='/create' component={AddExpensePage} />
-                <PrivateRoute path='/edit/:id' component={EditExpensePage} />
-                <PrivateRoute path='/help' component={HelpPage} />
-                <Route component={NotFoundPage} />
-            </Switch>
-        </div>
-    </Router >
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root'),
 );
+function ListItem(props) {
+  // Correct! There is no need to specify the key here:
+  return <li>{props.value}</li>;
+}
 
-export default AppRouter;
-```
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) => (
+    // Correct! Key should be specified inside the array.
+    <ListItem key={number.toString()} value={number} />
+  ));
+  return <ul>{listItems}</ul>;
+}
 
-PRIVATE ROUTE
-``` javascript
-//PRIVATE ROUTE
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
-import Header from '../components/Header';
-
-export const PrivateRoute = ({
-    isAuthenticated,
-    component: Component,
-    ...rest
-}) => (<Route {...rest} component={(props) => (
-    isAuthenticated ? (
-        <div>
-            <Header />
-            <Component {...props} />
-        </div>
-    )
-        :
-        (<Redirect to="/" />)
-)} />
-
-    );
-
-
-const mapStateToProps = (state) => ({
-    isAuthenticated: !!state.auth.uid
-});
-
-export default connect(mapStateToProps)(PrivateRoute);
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root'),
+);
 ```
