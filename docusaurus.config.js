@@ -32,14 +32,15 @@ module.exports = {
         },
         // { to: 'blog', label: 'Articles', position: 'left' },
         // Please keep GitHub link to the right for consistency.
+        
         {
-          href: 'https://github.com/Amarjit-ph',
-          label: 'Github',
+          href: 'https://devhints.io/',
+          label: 'Cheatsheets',
           position: 'left',
         },
         {
-          href: 'https://www.linkedin.com/in/amarjit-pheiroijam-234bba166/',
-          label: 'Linkin',
+          href: 'https://github.com/Amarjit-ph',
+          label: 'Github',
           position: 'left',
         },
       ],
