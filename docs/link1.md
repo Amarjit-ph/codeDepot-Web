@@ -12,12 +12,15 @@ Web development is the work involved in developing a Web site for the Internet o
 
 Front-end web development is the practice of converting data to a graphical interface, through the use of HTML, CSS, and JavaScript, so that users can view and interact with that data.
 
-### Cascading Style Sheets
+1. [React](https://reactjs.org/docs/getting-started.html) - A JavaScript library for building user interfaces
+2. [TypeScript + React](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup) - Cheatsheets for experienced React developers getting started with TypeScript
+
+### CSS Frameworks
 
 1. [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 2. [Tailwind CSS](https://tailwindcss.com/)
 
-#### Cheat Sheets
+### Cheat Sheets
 
 1. [Bootstrap - An interactive list of Bootstrap classes for version 4.3.1](https://hackerthemes.com/bootstrap-cheatsheet/)
 
