@@ -29,10 +29,7 @@ module.exports = {
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
-        },
-        // { to: 'blog', label: 'Articles', position: 'left' },
-        // Please keep GitHub link to the right for consistency.
-        
+        },  
         {
           href: 'https://devhints.io/',
           label: 'Cheatsheets',
